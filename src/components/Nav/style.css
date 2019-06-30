@@ -1,0 +1,10 @@
+nav {
+  max-width: 100vw;
+  background-color: goldenrod;
+  color: white;
+  padding: 2em;
+}
+
+nav a {
+  margin: 1em 2em;
+}
