@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Welcome extends Component {
-  render() {
-    return (
-      <h1>Welcome to Pourscore.</h1>
-    )
-  }
+	render() {
+		return <h1>Welcome to Pourscore.</h1>;
+	}
 }
 
 export default Welcome;

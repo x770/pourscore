@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const beerController = require('../../controllers/beer-controller');
+const beersController = require('../../controllers/beersController');
 
 router.route('/')
-  .get(beerController.findAll)
-  .post(beerController.create);
+  .get(beersController.findAll)
+  .post(beersController.create);
 
 router.route('/:id')
-  .get(beerController.findById)
-  .put(beerController.update)
-  .delete(beerController.remove);
+  .get(beersController.findById)
+  .put(beersController.update)
+  .delete(beersController.remove);
 
 module.exports = router;
