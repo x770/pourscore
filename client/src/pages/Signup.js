@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../components/Container';
 import { Input, FormBtn } from '../components/Form';
-import Users from '../utils/Users.js';
+import Register from '../utils/Register.js';
 
 class Signup extends Component {
 	state = {
@@ -26,16 +26,11 @@ class Signup extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 		if (this.state.username && this.state.password) {
-			Users.createUser({
+			Register.signUp({
 				username: this.state.username,
 				password: this.state.password
-			})
-				.then(this.clearInput())
-				.catch(err => {
-					if (err.response.status === 422) {
-						alert('Sorry! That username has been taken. Please try again.');
-					}
-				})
+			});
+			this.clearInput();
 		}
 	}
 
@@ -43,20 +38,24 @@ class Signup extends Component {
 		return (
 			<Container>
 				<h1>This is the sign up page.</h1>
+				<br />
 				<form>
 					<Input
 						value={this.state.username}
 						onChange={this.handleInputChange}
 						name='username'
-						placeholder='Username (required)'
+						placeholder='Username'
+						label='Username (required)'
 					/>
 					<Input
 						value={this.state.password}
 						onChange={this.handleInputChange}
 						name='password'
 						type='password'
-						placeholder='Password (required)'
+						placeholder='Password'
+						label='Password (required)'
 					/>
+					<br />
 					<FormBtn
 						disabled={!(this.state.username && this.state.password)}
 						onClick={this.handleFormSubmit}

@@ -2,6 +2,11 @@ const router = require('express').Router();
 const usersController = require('../../controllers/usersController');
 
 router.route('/')
-  .get(usersController.findAll);
+  .post(function (req, res) {
+    usersController.create({
+      username: req.body.username,
+      password: req.body.password
+    });
+  })
 
 module.exports = router;

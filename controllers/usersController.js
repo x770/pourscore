@@ -1,4 +1,5 @@
 const db = require('../models');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   findAll: function (req, res) {
@@ -7,10 +8,19 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function (req, res) {
+  findOne: function (req, res) {
     db.User
-      .create(req.body)
+      .findOne({ username: req })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  create: function ({ username, password }) {
+    const hashedPassword = bcrypt.hashSync(password, 10, null);
+    db.User
+      .create(
+        {
+          username: username,
+          password: hashedPassword
+        })
   }
 }
