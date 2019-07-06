@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
 import { Input, FormBtn } from '../components/Form';
 import axios from 'axios';
 
-
 class Login extends Component {
 	state = {
 		username: '',
-		password: ''
+		password: '',
+		currentUser: ''
 	}
 
 	handleInputChange = event => {
@@ -30,21 +31,16 @@ class Login extends Component {
 			axios.post('/api/login', {
 				username: this.state.username,
 				password: this.state.password
-			}).then(response => {
-				console.log(response)
-				if (response.status === 200) {
-					this.props.updateUser({
-						loggedIn: true,
-						username: response.data.username
-					})
-					this.setState({
-						redirectTo: '/dashboard'
-					})
+			}).then(data => {
+				if (data.data[0].username) {
+					this.props.updateUser(data.data[0].username, data.data[0].beers, data.data[0].lists, true)
 				}
-			}).catch(error => {
-				console.log('Login error: ')
-				console.log(error);
-			})
+				else {
+					alert('You fucking idiot');
+				}
+				
+		})
+			.catch(err => console.log(err))
 		}
 	}
 
@@ -57,6 +53,7 @@ class Login extends Component {
 						value={this.state.username}
 						onChange={this.handleInputChange}
 						name='username'
+						type='text'
 						placeholder='Username (required)'
 						label='Username: '
 					/>

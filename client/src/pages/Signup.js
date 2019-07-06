@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../components/Container';
 import { Input, FormBtn } from '../components/Form';
-import Register from '../utils/Register.js';
+import axios from 'axios';
 
 class Signup extends Component {
 	state = {
@@ -26,10 +26,12 @@ class Signup extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 		if (this.state.username && this.state.password) {
-			Register.signUp({
+			axios.post('/api/signup', {
 				username: this.state.username,
 				password: this.state.password
-			});
+			}).then(function (data) {
+				window.location.replace(data);
+			}).catch(err => console.log(err))
 			this.clearInput();
 		}
 	}

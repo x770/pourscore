@@ -1,11 +1,22 @@
-const passport = require('../../config/passport');
 const router = require('express').Router();
+const db = require('../../models');
 
 router.route('/')
-  .post(passport.authenticate('local'),
-    function (req, res) {
-    res.json('dashboard');
-    }
-)
+  .post(function (req, res) {
+    db.User.findOne({
+      username: req.body.username,
+      password: req.body.password
+    }).then(dbUser => {
+      if (dbUser) {
+        console.log(dbUser)
+        res.json([dbUser, '/dashboard']);
+      }
+
+      if (!dbUser) {
+        console.log('Sorry, user does not exist');
+        res.json('Could not log you in');
+      }
+    });
+  });
   
 module.exports = router;
