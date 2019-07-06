@@ -1,7 +1,13 @@
-// const router = require('express').Router();
-// const usersController = require('../../controllers/usersController');
+const router = require('express').Router();
+const db = require('../../models');
 
-// router.route('/')
-//   .get(usersController.findAll);
+router.route('/:username')
+  .get((req, res) => {
+    db.User.findOne({
+      username: req.params.username
+    }).then(dbUser => {
+      res.json(dbUser);
+    })
+  });
 
-// module.exports = router;
+module.exports = router;

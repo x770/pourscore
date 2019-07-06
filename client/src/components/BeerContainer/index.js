@@ -3,7 +3,6 @@ import BeerEntry from '../BeerEntry';
 import './style.css';
 
 export function BeerContainer(props) {
-  console.log(props);
   const beersArray = props.beersArray;
   return (
     <div className='beerContainer'>

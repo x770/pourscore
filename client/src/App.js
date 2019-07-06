@@ -7,20 +7,45 @@ import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    const authStatus = JSON.parse(localStorage.getItem('isAuth'));
+    const currentUser = localStorage.getItem('currentUser');
 
     this.state = {
-      currentUser: '',
-      isAuth: false,
+      currentUser: currentUser,
+      isAuth: authStatus,
       beers: [],
       lists: []
     };
   }
 
-  updateUser = (username, beers, lists, authStatus)=> this.setState({ currentUser: username, beers: beers, lists: lists, isAuth: authStatus });
+  componentDidMount() {
+    const isAuth = JSON.parse(localStorage.getItem('isAuth'));
+    const currentUser = localStorage.getItem('currentUser');
+
+    this.setState({ isAuth: isAuth });
+    this.setState({ currentUser: currentUser });
+
+    this.getUserData();
+  }
+
+  getUserData() {
+    const currentUser = localStorage.getItem('currentUser');
+    axios.get('/api/users/' + currentUser)
+			.then(response => {
+        this.setState({ beers: response.data.beers });
+      })
+  }
+
+  updateUser = (username, beers, lists, authStatus) => {
+    this.setState({ currentUser: username, beers: beers, lists: lists, isAuth: authStatus });
+    localStorage.setItem('currentUser', username);
+    localStorage.setItem('isAuth', authStatus);
+  }
 
   render() {
     return (
