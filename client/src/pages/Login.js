@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
 import { Input, FormBtn } from '../components/Form';
 import axios from 'axios';
@@ -36,7 +36,7 @@ class Login extends Component {
 					this.props.updateUser(data.data[0].username, data.data[0].beers, data.data[0].lists, true)
 				}
 				else {
-					alert('You fucking idiot');
+					alert('Incorrect password. Try again...');
 				}
 				
 		})

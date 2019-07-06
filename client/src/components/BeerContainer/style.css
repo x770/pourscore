@@ -1,0 +1,9 @@
+.beerContainer {
+  padding: 2em;
+  margin: 0 auto;
+}
+
+.listTitle {
+  font-weight: bold;
+  font-size: 32px;
+}

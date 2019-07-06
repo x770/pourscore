@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { BeerContainer } from '../components/BeerContainer';
+import './dashboard.css';
 
 class Dashboard extends Component {
 
@@ -9,10 +11,10 @@ class Dashboard extends Component {
 		}
 		return (
 			<div>
-				<h1>Welcome to your Pourscore Dashboard, {this.props.currentUser}</h1>
-				<p>
-					Your beers are listed here: {this.props.beers}
-				</p>
+				<h1 className='welcomeMessage'>Welcome to your Pourscore Dashboard, {this.props.currentUser}</h1>
+				<div>
+					<BeerContainer test='test' beersArray={this.props.beers} />
+				</div>
 			</div>
 		);
 	}

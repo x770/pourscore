@@ -1,0 +1,9 @@
+.beerEntry {
+  border: 1px solid grey;
+  padding: 1em 0em;
+}
+
+.beerName {
+  font-weight: bold;
+  font-size: 24px;
+}
