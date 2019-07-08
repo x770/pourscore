@@ -4,7 +4,7 @@ import './style.css';
 export function Input(props) {
   return (
     <div>
-      <label htmlFor={props.name}>{props.label}: </label>
+      <label htmlFor={props.name}>{props.label} </label> <br />
       <input {...props} />
     </div>
   )
@@ -13,7 +13,8 @@ export function Input(props) {
 export function TextArea(props) {
   return (
     <div>
-      <textarea rows='20' {...props} />
+      <label htmlFor={props.name}>{props.label} </label> <br />
+      <textarea rows='5' cols='50' {...props} />
     </div>
   )
 }

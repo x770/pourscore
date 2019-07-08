@@ -1,5 +1,21 @@
 .welcomeMessage {
-  font-weight: bold;
-  font-size: 42px;
   text-align: center;
+}
+
+.welcomeMessage h1 {
+  font-size: 28px;
+}
+
+.welcomeMessage h3 {
+  font-size: 20px;
+}
+
+.addBeerPrompt {
+  text-decoration: underline;
+  color: goldenrod;
+}
+
+.addBeerPrompt:hover {
+  cursor: pointer;
+  filter: brightness(75%);
 }

@@ -51,11 +51,12 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav isAuth={this.state.isAuth} />
           <Switch>
             <Route exact path='/' component={Welcome} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/login' render={(props) => <Login updateUser={this.updateUser.bind(this)} {...props} />} />
+            <Route exact path='/signup' component={Signup}/>
+            <Route exact path='/login' render={(props) => <Login updateUser={this.updateUser.bind(this)} {...props} />}
+            />
             <Route
               exact path='/dashboard'
               render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}
