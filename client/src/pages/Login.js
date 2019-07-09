@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
-import Container from '../components/Container';
-import { Input, FormBtn } from '../components/Form';
+import { Redirect } from 'react-router-dom';
+import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class Login extends Component {
@@ -47,33 +46,38 @@ class Login extends Component {
 
 	render() {
 		return (
-			<Container>
-				<h1>This is the log in page.</h1>
-				<form>
-					<Input
-						value={this.state.username}
-						onChange={this.handleInputChange}
-						name='username'
-						type='text'
-						placeholder='Username (required)'
-						label='Username: '
-					/>
-					<Input
-						value={this.state.password}
-						onChange={this.handleInputChange}
-						name='password'
-						type='password'
-						placeholder='Password (required)'
-						label='Password: '
-					/>
-					<FormBtn
-						disabled={!(this.state.username && this.state.password)}
-						onClick={this.handleFormSubmit}
-					>
-						Log in
-					</FormBtn>
-				</form>
-			</Container>
+			<Modal show={this.props.show} onHide={this.props.hide}>
+				<Modal.Header closeButton>
+					<Modal.Title>Please Log In</Modal.Title>
+				</Modal.Header>
+				<Form>
+					<Form.Group>
+						<Form.Label>Username: </Form.Label>
+						<Form.Control
+							type='text'
+							size='sm'
+							name='username'
+							value={this.state.username}
+							onChange={this.handleInputChange}
+							placeholder='Username (required)'
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Password: </Form.Label>
+						<Form.Control
+							type='password'
+							size='sm'
+							name='password'
+							value={this.state.password}
+							onChange={this.handleInputChange}
+							placeholder='Password (required)'
+						/>
+					</Form.Group>
+					<Button disabled={!(this.state.username && this.state.password)} onClick={this.handleFormSubmit}>
+						Log In
+					</Button>
+				</Form>
+			</Modal>
 		)
 	}
 }

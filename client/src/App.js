@@ -35,10 +35,12 @@ class App extends Component {
 
   getUserData() {
     const currentUser = localStorage.getItem('currentUser');
-    axios.get('/api/users/' + currentUser)
+    if (currentUser) {
+      axios.get('/api/users/' + currentUser)
 			.then(response => {
         this.setState({ beers: response.data.beers });
       })
+    }
   }
 
   updateUser = (username, beers, lists, authStatus) => {
@@ -51,12 +53,13 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav isAuth={this.state.isAuth} />
+          <Nav
+            isAuth={this.state.isAuth}
+            updateUser={this.updateUser.bind(this)}
+          />
           <Switch>
-            <Route exact path='/' component={Welcome} />
+            <Route exact path='/' render={(props) => <Welcome isAuth={this.state.isAuth} {...props} />} />
             <Route exact path='/signup' component={Signup}/>
-            <Route exact path='/login' render={(props) => <Login updateUser={this.updateUser.bind(this)} {...props} />}
-            />
             <Route
               exact path='/dashboard'
               render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}

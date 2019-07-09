@@ -19,8 +19,8 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		if (this.props.isAuth === false) {
-			return <Redirect to='/login' />
+		if (!this.props.isAuth) {
+			return <Redirect to='/' />
 		}
 		return (
 			<div>
