@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Container from '../Container';
 import Login from '../../pages/Login';
 import './style.css';
 
@@ -34,6 +35,7 @@ class Nav extends Component {
     if (this.props.isAuth === true) {
       return (
         <nav>
+          <Container>
           <span className='brand'>POURSCORE</span>
           <span className='linksGroup'>
             <Link to='/dashboard' className='navLink'>Dashboard</Link>
@@ -44,12 +46,14 @@ class Nav extends Component {
               Log Out
             </span>
           </span>
+          </Container>
         </nav>
       )
     } else {
       return (
         <nav>
-        <span className='brand'>POURSCORE</span>
+          <Container>
+        <Link to='/' className='brand'><span >POURSCORE</span></Link>
         <span className='linksGroup'>
           <Link to='/' className='navLink'>Welcome</Link>
           <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
@@ -59,7 +63,8 @@ class Nav extends Component {
             show={this.state.showLogin}
             hide={this.handleLoginModal.bind(this)}
             updateUser={this.props.updateUser}
-          />
+            />
+            </Container>
         </nav>
       )
     }

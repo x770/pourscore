@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
+import Hero from '../components/Hero';
 
 class Welcome extends Component {
 
@@ -9,9 +10,7 @@ class Welcome extends Component {
 			return <Redirect to='/dashboard' />
 		}
 		return (
-			<Container>
-				<h1>Welcome to Pourscore</h1>
-			</Container>
+			<Hero />
 		)
 	}
 }
