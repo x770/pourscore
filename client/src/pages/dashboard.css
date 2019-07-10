@@ -1,5 +1,6 @@
 .welcomeMessage {
   text-align: center;
+  margin-top: 1em;
 }
 
 .welcomeMessage h1 {
@@ -12,10 +13,11 @@
 
 .addBeerPrompt {
   text-decoration: underline;
-  color: goldenrod;
+  color: black;
+  font-weight: bold;
 }
 
 .addBeerPrompt:hover {
   cursor: pointer;
-  filter: brightness(75%);
+  text-decoration: underline;
 }

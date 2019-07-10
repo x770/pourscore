@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Container from '../Container';
 import Login from '../../pages/Login';
+import Signup from '../../pages/Signup';
 import './style.css';
 
 class Nav extends Component {
@@ -36,13 +37,10 @@ class Nav extends Component {
       return (
         <nav>
           <Container>
-          <span className='brand'>POURSCORE</span>
+          <Link to='/' className='brand'>POURSCORE</Link>
           <span className='linksGroup'>
             <Link to='/dashboard' className='navLink'>Dashboard</Link>
-            <span
-              className='navLink'
-              onClick={this.logOut}
-            >
+            <span className='navLink' onClick={this.logOut} >
               Log Out
             </span>
           </span>
@@ -53,18 +51,23 @@ class Nav extends Component {
       return (
         <nav>
           <Container>
-        <Link to='/' className='brand'><span >POURSCORE</span></Link>
-        <span className='linksGroup'>
-          <Link to='/' className='navLink'>Welcome</Link>
-          <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
-          <Link to='/signup' className='navLink'>Sign Up</Link>
-        </span>
-          <Login
-            show={this.state.showLogin}
-            hide={this.handleLoginModal.bind(this)}
-            updateUser={this.props.updateUser}
+            <Link to='/' className='brand'>POURSCORE</Link>
+            <span className='linksGroup'>
+              <Link to='/' className='navLink'>Welcome</Link>
+              <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
+              <span className='navLink' onClick={this.handleSignupModal}>Sign Up</span>
+            </span>
+            <Login
+              show={this.state.showLogin}
+              hide={this.handleLoginModal.bind(this)}
+              updateUser={this.props.updateUser}
             />
-            </Container>
+            <Signup
+              show={this.state.showSignup}
+              hide={this.handleSignupModal.bind(this)}
+              updateUser={this.props.updateUser}
+            />
+          </Container>
         </nav>
       )
     }

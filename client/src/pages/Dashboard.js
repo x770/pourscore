@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Container from '../components/Container';
 import { BeerContainer } from '../components/BeerContainer';
 import AddModal from '../components/AddModal';
 import './dashboard.css';
@@ -23,7 +24,7 @@ class Dashboard extends Component {
 			return <Redirect to='/' />
 		}
 		return (
-			<div>
+			<Container>
 				<div className='welcomeMessage'>
 					<h1>Welcome to your Pourscore Dashboard, {this.props.currentUser}</h1>
 					<h3>
@@ -38,7 +39,7 @@ class Dashboard extends Component {
 				<div>
 					<BeerContainer test='test' beersArray={this.props.beers} />
 				</div>
-			</div>
+			</Container>
 		);
 	}
 }

@@ -4,8 +4,6 @@ import './App.css';
 import Nav from './components/Nav';
 import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import axios from 'axios';
 
@@ -59,7 +57,6 @@ class App extends Component {
           />
           <Switch>
             <Route exact path='/' render={(props) => <Welcome isAuth={this.state.isAuth} {...props} />} />
-            <Route exact path='/signup' component={Signup}/>
             <Route
               exact path='/dashboard'
               render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}

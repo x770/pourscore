@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -74,7 +73,7 @@ class Login extends Component {
 						/>
 					</Form.Group>
 					<Button disabled={!(this.state.username && this.state.password)} onClick={this.handleFormSubmit}>
-						Log In
+						Log in
 					</Button>
 				</Form>
 			</Modal>

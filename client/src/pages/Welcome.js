@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Container from '../components/Container';
 import Hero from '../components/Hero';
 
 class Welcome extends Component {

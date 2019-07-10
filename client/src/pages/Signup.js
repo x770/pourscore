@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Container from '../components/Container';
-import { Input, FormBtn } from '../components/Form';
+import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class Signup extends Component {
@@ -29,8 +28,13 @@ class Signup extends Component {
 			axios.post('/api/signup', {
 				username: this.state.username,
 				password: this.state.password
-			}).then(function (data) {
-				window.location.replace(data);
+			}).then(data => {
+				if (!data.data[0]) {
+					alert('Username is taken! Try again.')
+				} else {
+					this.props.updateUser(data.data[0].username, data.data[0].beers, data.data[0].lists, true)
+				}
+				window.location.replace('/dashboard');
 			}).catch(err => console.log(err))
 			this.clearInput();
 		}
@@ -38,34 +42,38 @@ class Signup extends Component {
 
 	render() {
 		return (
-			<Container>
-				<h1>This is the sign up page.</h1>
-				<br />
-				<form>
-					<Input
-						value={this.state.username}
-						onChange={this.handleInputChange}
-						name='username'
-						placeholder='Username'
-						label='Username (required)'
-					/>
-					<Input
-						value={this.state.password}
-						onChange={this.handleInputChange}
-						name='password'
-						type='password'
-						placeholder='Password'
-						label='Password (required)'
-					/>
-					<br />
-					<FormBtn
-						disabled={!(this.state.username && this.state.password)}
-						onClick={this.handleFormSubmit}
-					>
-						Sign Up
-					</FormBtn>
-				</form>
-			</Container>
+			<Modal show={this.props.show} onHide={this.props.hide}>
+				<Modal.Header closeButton>
+					<Modal.Title>Please Sign Up</Modal.Title>
+				</Modal.Header>
+				<Form>
+				<Form.Group>
+						<Form.Label>Username: </Form.Label>
+						<Form.Control
+							type='text'
+							size='sm'
+							name='username'
+							value={this.state.username}
+							onChange={this.handleInputChange}
+							placeholder='Username (required)'
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Password: </Form.Label>
+						<Form.Control
+							type='password'
+							size='sm'
+							name='password'
+							value={this.state.password}
+							onChange={this.handleInputChange}
+							placeholder='Password (required)'
+						/>
+					</Form.Group>
+					<Button disabled={!(this.state.username && this.state.password)} onClick={this.handleFormSubmit}>
+						Sign up
+					</Button>
+				</Form>
+			</Modal>
 		)
 	}
 }

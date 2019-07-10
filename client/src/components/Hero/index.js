@@ -1,4 +1,4 @@
-import React, { Component, ImageBackground, Text } from 'react';
+import React, { Component } from 'react';
 import Container from '../Container';
 import { Button } from 'react-bootstrap';
 import heroImage from './img/beer-hero.jpg';
@@ -9,8 +9,7 @@ class Hero extends Component {
     const background = {
       background: `linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url(${heroImage})`,
       backgroundSize: 'cover',
-      zIndex: '-1',
-      position: 'absolute'
+      zIndex: '-1'
     }
     return (
       <div style ={ { ...background } } className='heroContainer'>
