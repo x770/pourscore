@@ -11,7 +11,7 @@ const app = express();
 // Express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(routes);
+app.use('/', routes);
 
 app.use(session({
   secret: 'rocket-chasm-2948fdan312a',
