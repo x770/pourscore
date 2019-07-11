@@ -40,7 +40,6 @@ class AddModal extends Component {
         beerRating: this.state.beerRating,
         beerNotes: this.state.beerNotes
       }).then(data => {
-        console.log(data);
         this.props.hideModal();
         this.props.reload();
     }).catch(err => console.log(err))

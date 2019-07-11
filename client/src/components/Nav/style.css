@@ -1,13 +1,16 @@
 nav {
   width: 100vw;
   max-width: 100vw;
+  height: 64px;
+  max-height: 64px;
   background-color: #F7CB14;
   color: black;
-  padding: 1em 0em;
 }
 
 .linksGroup {
   float: right;
+  height: 100%;
+  line-height: 64px;
 }
 
 .navLink {
@@ -25,10 +28,12 @@ nav {
 }
 
 .brand {
+  font-family: 'Bungee';
+  height: 64px;
+  line-height: 64px;
   color: black;
   letter-spacing: 2px;
-  font-size: 20px;
-  font-weight: 900;
+  font-size: 24px;
   text-decoration: none;
 }
 

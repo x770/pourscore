@@ -37,7 +37,9 @@ class Nav extends Component {
       return (
         <nav>
           <Container>
-          <Link to='/' className='brand'>POURSCORE</Link>
+            <Link to='/' className='brand'>
+              POURSCORE
+            </Link>
           <span className='linksGroup'>
             <Link to='/dashboard' className='navLink'>Dashboard</Link>
             <span className='navLink' onClick={this.logOut} >
@@ -51,7 +53,10 @@ class Nav extends Component {
       return (
         <nav>
           <Container>
-            <Link to='/' className='brand'>POURSCORE</Link>
+            
+            <Link to='/' className='brand'>
+              POURSCORE
+            </Link>
             <span className='linksGroup'>
               <Link to='/' className='navLink'>Welcome</Link>
               <span className='navLink' onClick={this.handleLoginModal}>Log in</span>

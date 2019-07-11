@@ -20,7 +20,7 @@ class Hero extends Component {
             <br />
             <p>Pourscore helps you do just that, so you can focus on more important things&mdash;like trying new beer.</p>
             <br />
-            <Button>Get Started</Button>
+            <Button variant='primary'>Get Started</Button>
           </div>
         </Container>
       </div>
