@@ -30,8 +30,8 @@ class Login extends Component {
 				username: this.state.username,
 				password: this.state.password
 			}).then(data => {
-				if (data.data[0].username) {
-					this.props.updateUser(data.data[0].username, data.data[0].beers, data.data[0].lists, true)
+				if (data.data.username) {
+					this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true)
 				}
 				else {
 					alert('Incorrect password. Try again...');
