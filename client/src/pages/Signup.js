@@ -30,7 +30,7 @@ class Signup extends Component {
 				password: this.state.password
 			}).then(data => {
 				this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true)
-				window.location.replace('/dashboard');
+				window.location.replace('/');
 			}).catch(err => console.log(err))
 			this.clearInput();
 		}
