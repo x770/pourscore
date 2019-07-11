@@ -1,15 +1,24 @@
+.entryContainer {
+  margin-bottom: 2em;
+  font-size: 16px;
+}
+
 .beerEntry {
   display: grid;
   grid-template-columns: auto auto auto;
   align-content: center;
   align-items: center;
   height: 125px;
-  margin-bottom: 2em;
 }
 
-.entryInfoContainer {
+.entryData {
   grid-column: 1 / span 2;
   max-height: 75px;
+}
+
+.entryTitle {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .ratingContainer {
@@ -22,15 +31,6 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
-}
-
-.entryTitle {
-  font-size: 24px;
-}
-
-.beerName, .breweryName {
-  font-weight: bold;
-  line-height: 0.5;
 }
 
 .dateAdded {

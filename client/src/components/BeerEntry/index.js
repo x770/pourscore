@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
 import './style.css';
 
-export default function BeerEntry(props) {
+class BeerEntry extends Component {
+
   // Parse ISO8601 date to a 'Month Date, Year' format
-  const parseDate = (oldDate) => {
+  parseDate = (oldDate) => {
     const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     let day = oldDate.slice(8, 10);
@@ -12,35 +15,56 @@ export default function BeerEntry(props) {
 
     month = monthsArr[month - 1];
 
-    return(`${month} ${day}, ${year}`);
+    return (`${month} ${day}, ${year}`);
   }
 
   // Format rating so that whole numbers display as #.0; Rating of 2 => 2.0
-  const formatRating = (rating) => {
+  formatRating = (rating) => {
     if (rating.toString().length === 1) {
       return rating + '.0'
     }
     return rating.toString();
   }
 
-  return (
-    <div className='beerEntry'>
-      <div className='entryInfoContainer'>
-        <h3 className='entryTitle'>
-          <span className='beerName'>{props.beerName}</span> by 
-          <span className='breweryName'> {props.breweryName}</span> <br />
-          <div className='dateAdded'>Added on {parseDate(props.dateAdded)}</div> <br />
-        </h3>
-      </div>
-      <div className='ratingContainer'>
-        <div className='beerRating'>
-          <div className='ratingNumber'>{formatRating(props.beerRating)}</div>
-          <div className='ratingLabel'>RATING</div>
+  // Handle entry delete
+  handleDelete = event => {
+    event.preventDefault();
+
+    let entryId = this.props.entryId;
+
+    axios.delete('/api/beers/' + entryId)
+      .then(
+        () => {
+          this.props.loadBeers();
+        }
+      )
+      .catch(err => console.log(err))
+  }
+
+  render() {
+    return (
+      <div className='entryContainer'>
+        <div className='beerEntry'>
+          <div className='entryData'>
+            <h3 className='entryTitle'>
+              {this.props.breweryName} {this.props.beerName}
+            </h3>
+            <div className='dateAdded'>Added on {this.parseDate(this.props.dateAdded)}</div>
+          </div>
+          <div className='ratingContainer'>
+            <div className='beerRating'>
+              <div className='ratingNumber'>{this.formatRating(this.props.beerRating)}</div>
+              <div className='ratingLabel'>RATING</div>
+            </div>
+          </div>
+          <div className='notesContainer'>
+            <div className='notesTitle'>Your notes: <span className='beerNotes'>"{this.props.beerNotes}"</span></div>
+          </div>
         </div>
+        <Button variant='outline-danger' size='sm' onClick={this.handleDelete} >Delete this entry</Button>
       </div>
-      <div className='notesContainer'>
-        <div className='notesTitle'>Your notes: <span className='beerNotes'>"{props.beerNotes}"</span></div>
-      </div>
-    </div>
-  )
-};
+    )
+  }
+}
+
+export default BeerEntry;

@@ -17,6 +17,17 @@ router.route('/')
     })
   });
 
+router.route('/:beerId')
+  .delete(function (req, res) {
+    db.Beer.deleteOne({
+      _id: req.params.beerId
+    }).then(function (data) {
+      return res.json(data)
+    }).catch(err => {
+      res.json(err);
+    })
+  })
+
 router.route('/:userId')
   .get(function (req, res) {
     db.Beer.find({

@@ -21,11 +21,13 @@ export function BeerContainer(props) {
         {props.beersArray.map(beerEntry => (
           <BeerEntry
             key={beerEntry._id}
+            entryId={beerEntry._id}
             beerName={beerEntry.beerName}
             breweryName={beerEntry.breweryName}
             beerRating={beerEntry.beerRating}
             beerNotes={beerEntry.beerNotes}
             dateAdded={beerEntry.date}
+            loadBeers={props.loadBeers}
           />
         ))}
       </div>

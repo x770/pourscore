@@ -66,7 +66,7 @@ class Dashboard extends Component {
 					<AddModal show={this.state.show} hideModal={this.hideAddModal.bind(this)} username={this.props.currentUser} userId={this.state.userId} reload={this.componentDidMount.bind(this)} />
 				</div>
 				<div>
-					<BeerContainer test='test' beersArray={this.state.beersArray} />
+					<BeerContainer test='test' beersArray={this.state.beersArray} loadBeers={this.loadBeers.bind(this)}/>
 				</div>
 			</Container>
 		);

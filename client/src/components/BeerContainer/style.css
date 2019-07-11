@@ -1,5 +1,6 @@
 .beerContainer {
   width: 700px;
+  max-width: 100%;
 }
 
 .listTitle {
