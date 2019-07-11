@@ -8,7 +8,7 @@ router.route('/')
       password: req.body.password
     }).then(dbUser => {
       if (dbUser) {
-        res.json([dbUser, '/dashboard']);
+        res.json(dbUser);
       }
 
       if (!dbUser) {

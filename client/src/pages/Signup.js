@@ -29,11 +29,7 @@ class Signup extends Component {
 				username: this.state.username,
 				password: this.state.password
 			}).then(data => {
-				if (!data.data[0]) {
-					alert('Username is taken! Try again.')
-				} else {
-					this.props.updateUser(data.data[0].username, data.data[0].beers, data.data[0].lists, true)
-				}
+				this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true)
 				window.location.replace('/dashboard');
 			}).catch(err => console.log(err))
 			this.clearInput();
