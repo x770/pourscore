@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Nav from './components/Nav';
 import Welcome from './pages/Welcome';
@@ -58,7 +58,7 @@ class App extends Component {
               exact path='/dashboard'
               render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}
             />
-            <Route component={NoMatch} />
+            <Route path='*' component={NoMatch} />
           </Switch>
         </div>
       </Router>
