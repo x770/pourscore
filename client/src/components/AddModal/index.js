@@ -41,7 +41,8 @@ class AddModal extends Component {
         beerNotes: this.state.beerNotes
       }).then(data => {
         console.log(data);
-        window.location.replace('/dashboard');
+        this.props.hideModal();
+        this.props.reload();
     }).catch(err => console.log(err))
   }
 

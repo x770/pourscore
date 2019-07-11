@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 
 export default function BeerEntry(props) {
+  // Parse ISO8601 date to a 'Month Date, Year' format
   const parseDate = (oldDate) => {
     const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -12,6 +13,14 @@ export default function BeerEntry(props) {
     month = monthsArr[month - 1];
 
     return(`${month} ${day}, ${year}`);
+  }
+
+  // Format rating so that whole numbers display as #.0; Rating of 2 => 2.0
+  const formatRating = (rating) => {
+    if (rating.toString().length === 1) {
+      return rating + '.0'
+    }
+    return rating.toString();
   }
 
   return (
@@ -25,7 +34,7 @@ export default function BeerEntry(props) {
       </div>
       <div className='ratingContainer'>
         <div className='beerRating'>
-          <div className='ratingNumber'>{props.beerRating}</div>
+          <div className='ratingNumber'>{formatRating(props.beerRating)}</div>
           <div className='ratingLabel'>RATING</div>
         </div>
       </div>
