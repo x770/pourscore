@@ -8,7 +8,6 @@ router.route('/')
       password: req.body.password
     }).then(function () {
       res.redirect(307, '/api/login');
-      
     }).catch(err => {
       console.log(err);
       res.json(err);

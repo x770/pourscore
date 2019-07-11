@@ -1,6 +1,7 @@
 .welcomeMessage {
-  text-align: center;
   margin-top: 1em;
+  line-height: 1;
+  padding: 1em 0;
 }
 
 .welcomeMessage h1 {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 import './style.css';
 
 class AddModal extends Component {
@@ -31,8 +32,17 @@ class AddModal extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-    console.log(this.state);
+    axios.post('/api/beers',
+      {
+        user: this.props.userId,
+        beerName: this.state.beerName,
+        breweryName: this.state.breweryName,
+        beerRating: this.state.beerRating,
+        beerNotes: this.state.beerNotes
+      }).then(data => {
+        console.log(data);
+        window.location.replace('/dashboard');
+    }).catch(err => console.log(err))
   }
 
   render() {

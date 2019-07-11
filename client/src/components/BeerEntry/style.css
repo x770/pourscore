@@ -1,9 +1,72 @@
 .beerEntry {
-  border: 1px solid grey;
-  padding: 1em 0em;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content: center;
+  align-items: center;
+  height: 125px;
+  margin-bottom: 2em;
 }
 
-.beerName {
-  font-weight: bold;
+.entryInfoContainer {
+  grid-column: 1 / span 2;
+  max-height: 75px;
+}
+
+.ratingContainer {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  text-align: center;
+  justify-self: end;
+  background-color: #F7CB14;
+  float: right;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.entryTitle {
   font-size: 24px;
+}
+
+.beerName, .breweryName {
+  font-weight: bold;
+  line-height: 0.5;
+}
+
+.dateAdded {
+  font-size: 16px;
+}
+
+.notesContainer {
+  font-size: 16px;
+}
+
+.notesTitle {
+  font-weight: bold
+}
+
+.beerNotes {
+  font-weight: normal;
+}
+
+@media only screen and (max-width: 700px) {
+  .notesContainer {
+    display: none;
+  }
+}
+
+.beerRating {
+  min-height: 100px;
+  height: 100px;
+  width: 100px;
+  padding-top: 25px;
+  text-align: center;
+  align-items: center;
+  line-height: 1;
+}
+
+.ratingNumber {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
 }

@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const beerSchema = new Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   beerName: { type: String, required: true },
-  brewery: { type: String, required: true },
-  rating: Number,
-  date: { type: Date, default: Date.now },
-  lists: {}
+  breweryName: { type: String, required: true },
+  beerRating: Number,
+  beerNotes: { type: String },
+  date: { type: Date, default: Date.now }
 });
 
 const Beer = mongoose.model('Beer', beerSchema);
