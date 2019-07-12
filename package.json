@@ -60,6 +60,6 @@
   "bugs": {
     "url": "https://github.com/travishenson/pourscore/issues"
   },
-  "homepage": "https://github.com/travishenson/pourscore#readme",
+  "homepage": "https://pourscore.herokuapp.com",
   "description": "> Final Project: University of Richmond Full Stack Boot Camp"
 }
