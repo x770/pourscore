@@ -7,6 +7,10 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
+// Serve static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 // Express middleware
 app.use(express.urlencoded({ extended: true }));
@@ -24,10 +28,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pourscoreDB', {
   useNewUrlParser: true
 });
 
-// Serve static assets
-if (process.env.NODE_ENV === 'production') {
-  app.use('/static', express.static(path.join(__dirname, 'client/build')));
-}
+
 
 // Start API server
 app.listen(PORT, function() {
