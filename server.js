@@ -19,6 +19,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Test
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pourscoreDB', {
   useNewUrlParser: true
