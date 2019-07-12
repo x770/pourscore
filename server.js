@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pourscoreDB', {
 
 // Serve static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use('/static', express.static(path.join(__dirname, 'client/build')));
 }
 
 // Start API server
