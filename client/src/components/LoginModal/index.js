@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+import './style.css';
 import axios from 'axios';
 
 class Login extends Component {
@@ -31,7 +32,8 @@ class Login extends Component {
 				password: this.state.password
 			}).then(data => {
 				if (data.data.username) {
-					this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true)
+					this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true);
+					this.props.hide();
 				}
 				else {
 					alert('Incorrect password. Try again...');
@@ -72,7 +74,12 @@ class Login extends Component {
 							placeholder='Password (required)'
 						/>
 					</Form.Group>
-					<Button disabled={!(this.state.username && this.state.password)} onClick={this.handleFormSubmit}>
+					<Button
+						style={{ backgroundColor: '#F7CB14', color: 'black' }}
+						className='loginButton'
+						disabled={!(this.state.username && this.state.password)}
+						onClick={this.handleFormSubmit}
+					>
 						Log in
 					</Button>
 				</Form>

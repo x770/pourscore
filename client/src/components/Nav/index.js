@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Login from '../../pages/Login';
-import Signup from '../../pages/Signup';
 import './style.css';
 
 class Nav extends Component {
@@ -44,7 +42,7 @@ class Nav extends Component {
         <nav>
           <Link to='/' className='brand'>POURSCORE</Link>
           <span className='navbarToggle' onClick={this.handleMenuToggle} >
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </span>
           <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
             <li>
@@ -59,29 +57,19 @@ class Nav extends Component {
     } else {
       return (
         <nav>
-        <Link to='/' className='brand'>POURSCORE</Link>
-        <span className='navbarToggle' onClick={this.handleMenuToggle} >
-          <i class="fas fa-bars"></i>
-        </span>
-        <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
-          <li>
-            <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
-          </li>
-          <li>
-            <span className='navLink' onClick={this.handleSignupModal}>Sign Up</span>
-          </li>
+          <Link to='/' className='brand'>POURSCORE</Link>
+          <span className='navbarToggle' onClick={this.handleMenuToggle} >
+            <i className="fas fa-bars"></i>
+          </span>
+          <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+            <li>
+              <span className='navLink' onClick={this.props.handleLoginModal}>Log in</span>
+            </li>
+            <li>
+              <span className='navLink' onClick={this.props.handleSignupModal}>Sign Up</span>
+            </li>
           </ul>
-          <Login
-              show={this.state.showLogin}
-              hide={this.handleLoginModal.bind(this)}
-              updateUser={this.props.updateUser}
-            />
-          <Signup
-            show={this.state.showSignup}
-            hide={this.handleSignupModal.bind(this)}
-            updateUser={this.props.updateUser}
-          />
-      </nav>
+        </nav>
       )
     }
 

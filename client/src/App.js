@@ -5,6 +5,8 @@ import Nav from './components/Nav';
 import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
 import NoMatch from './pages/NoMatch';
+import Login from './components/LoginModal';
+import Signup from './components/SignupModal';
 import axios from 'axios';
 
 class App extends Component {
@@ -17,7 +19,9 @@ class App extends Component {
       currentUser: currentUser,
       isAuth: authStatus,
       beers: [],
-      lists: []
+      lists: [],
+      showLogin: false,
+      showSignup: false
     };
   }
 
@@ -25,10 +29,30 @@ class App extends Component {
     const isAuth = JSON.parse(localStorage.getItem('isAuth'));
     const currentUser = localStorage.getItem('currentUser');
 
-    this.setState({ isAuth: isAuth });
-    this.setState({ currentUser: currentUser });
+    this.setState({
+        isAuth: isAuth,
+        currentUser: currentUser,
+        showLogin: false,
+        showSignup: false
+      });
 
     this.getUserData();
+  }
+
+  handleLoginModal = () => {
+		if (this.state.showLogin === false) {
+			this.setState({ showLogin: true })
+		} else {
+			this.setState({ showLogin: false })
+		}
+  }
+  
+  handleSignupModal = () => {
+		if (this.state.showSignup === false) {
+			this.setState({ showSignup: true })
+		} else {
+			this.setState({ showSignup: false })
+		}
   }
 
   getUserData() {
@@ -51,9 +75,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} />
+          <Nav isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} handleLoginModal={this.handleLoginModal.bind(this)} handleSignupModal={this.handleSignupModal.bind(this)} />
           <Switch>
-            <Route exact path='/' render={(props) => <Welcome isAuth={this.state.isAuth} {...props} />} />
+            <Route exact path='/'
+              render={(props) => <Welcome {...props} isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} handleSignupModal={this.handleSignupModal.bind(this)} />} />
             <Route
               exact path='/dashboard'
               render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}
@@ -61,6 +86,16 @@ class App extends Component {
             <Route path='*' component={NoMatch} />
           </Switch>
         </div>
+        <Login
+              show={this.state.showLogin}
+              hide={this.handleLoginModal.bind(this)}
+              updateUser={this.updateUser}
+            />
+          <Signup
+            show={this.state.showSignup}
+            hide={this.handleSignupModal.bind(this)}
+            updateUser={this.updateUser}
+          />
       </Router>
     );
   }

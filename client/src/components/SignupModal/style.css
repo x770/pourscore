@@ -1,0 +1,11 @@
+.signupButton {
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.signupButton:hover, .signupButton:active {
+  background-color: #F7CB14;
+  color: black;
+  filter: brightness(103%);
+}

@@ -9,7 +9,7 @@ class Welcome extends Component {
 			return <Redirect to='/dashboard' />
 		}
 		return (
-			<Hero />
+			<Hero handleSignupModal={this.props.handleSignupModal.bind(this)} />
 		)
 	}
 }

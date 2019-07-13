@@ -1,24 +1,44 @@
 .heroContainer {
   width: 100vw;
   height: 100vh;
-  max-height: calc(100vh - 64px);
-  padding-top: 2em;
+  padding-top: 25vh;
   color: white;
 }
 
-.innerText {
-  padding: 20vh 0;
+.button {
+  background-color: #F7CB14;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.button:hover, .button:active {
+  background-color: #F7CB14;
+  color: black;
+  filter: brightness(103%);
 }
 
 h1 {
-  font-size: 42px;
+  font-size: calc(1.75em + 1vw);
   margin-bottom: 18px;
   line-height: 1;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 p {
-  font-size: 18px;
+  font-size: calc(1em + 0.75vmin);
   line-height: 1.5;
-  width: 65%;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) { 
+  .heroContainer {
+    padding-top: 20vh;
+  }
+  
+  p {
+    width: 100%;
+  }
 }
 

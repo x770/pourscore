@@ -42,3 +42,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.button {
+  background-color: #F7CB14;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.button:hover, .button:active {
+  background-color: #F7CB14;
+  color: black;
+  filter: brightness(90%);
+}

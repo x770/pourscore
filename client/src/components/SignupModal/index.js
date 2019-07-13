@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+import './style.css';
 import axios from 'axios';
 
 class Signup extends Component {
@@ -24,12 +25,15 @@ class Signup extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault();
+		console.log(this.state);
+		console.log(this.props);
 		if (this.state.username && this.state.password) {
 			axios.post('/api/signup', {
 				username: this.state.username,
 				password: this.state.password
 			}).then(data => {
-				this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true)
+				this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true);
+				this.props.hide();
 				window.location.replace('/');
 			}).catch(err => console.log(err))
 			this.clearInput();
@@ -65,7 +69,12 @@ class Signup extends Component {
 							placeholder='Password (required)'
 						/>
 					</Form.Group>
-					<Button disabled={!(this.state.username && this.state.password)} onClick={this.handleFormSubmit}>
+					<Button
+						style={{ backgroundColor: '#F7CB14', color: 'black' }}
+						className='signupButton'
+						disabled={!(this.state.username && this.state.password)}
+						onClick={this.handleFormSubmit}
+					>
 						Sign up
 					</Button>
 				</Form>

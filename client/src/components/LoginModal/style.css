@@ -1,0 +1,11 @@
+.loginButton {
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.loginButton:hover, .loginButton:active {
+  background-color: #F7CB14;
+  color: black;
+  filter: brightness(103%);
+}
