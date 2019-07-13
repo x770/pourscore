@@ -1,15 +1,17 @@
 .welcomeMessage {
-  margin-top: 1em;
-  line-height: 1;
+  margin: 1em 0em;
   padding: 1em 0;
 }
 
 .welcomeMessage h1 {
-  font-size: 28px;
+  font-size: calc(1.25em + 1vw);
+  letter-spacing: 0;
+  line-height: 1.25;
 }
 
 .welcomeMessage h3 {
-  font-size: 20px;
+  font-size: calc(1em + 0.5vw);
+  line-height: 1.25;
 }
 
 .addBeerPrompt {
@@ -21,4 +23,18 @@
 .addBeerPrompt:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.gridContainer {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .listsItem {
+    display: none;
+  }
+
+  .beersItem {
+    float: none;
+  }
 }

@@ -13,3 +13,16 @@ form > div {
   font-weight: bold;
   text-align: center;
 }
+
+.submitButton {
+  background-color: #F7CB14;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+.submitButton:hover, .submitButton:active {
+  background-color: #F7CB14;
+  color: black;
+  filter: brightness(103%);
+}

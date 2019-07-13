@@ -1,0 +1,31 @@
+.sidebar {
+  background-color: white;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.open {
+  width: 250px;
+}
+
+.listsModal {
+  padding: 20px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+}

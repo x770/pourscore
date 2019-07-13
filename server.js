@@ -28,8 +28,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pourscoreDB', {
   useNewUrlParser: true
 });
 
-
-
 // Start API server
 app.listen(PORT, function() {
   console.log(`Server now listening on PORT ${PORT}...`);

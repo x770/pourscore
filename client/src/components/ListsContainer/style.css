@@ -1,0 +1,13 @@
+.listsContainer {
+  margin-right: 10vw;
+}
+
+.listsContainer > h2 {
+  font-size: 1.5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .listsContainer {
+    display: none;
+  }
+}

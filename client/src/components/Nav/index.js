@@ -6,7 +6,8 @@ class Nav extends Component {
   state = {
 		showLogin: false,
     showSignup: false,
-    showMenu: false
+    showMenu: false,
+    showLists: false
   }
 
 	handleLoginModal = () => {
@@ -40,9 +41,12 @@ class Nav extends Component {
     if (this.props.isAuth === true) {
       return (
         <nav>
+          <span className='listsToggle' onClick={this.props.handleListsToggle}>
+            &#9776;
+          </span>
           <Link to='/' className='brand'>POURSCORE</Link>
           <span className='navbarToggle' onClick={this.handleMenuToggle} >
-            <i className="fas fa-bars"></i>
+            <i class="fas fa-cog"></i>
           </span>
           <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
             <li>

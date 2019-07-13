@@ -1,5 +1,5 @@
 .entryContainer {
-  margin-bottom: 2em;
+  margin-bottom: 1vw;
   font-size: 16px;
 }
 
@@ -17,7 +17,8 @@
 }
 
 .entryTitle {
-  font-size: 24px;
+  font-size: calc(1em + 0.75vw);
+  line-height: 1.25;
   font-weight: bold;
 }
 
@@ -29,16 +30,9 @@
   background-color: #F7CB14;
   float: right;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
-}
-
-.dateAdded {
-  font-size: 16px;
-}
-
-.notesContainer {
-  font-size: 16px;
+  margin-left: 5vw;
+  width: 10vmin;
+  height: 10vmin;
 }
 
 .notesTitle {
@@ -49,24 +43,38 @@
   font-weight: normal;
 }
 
+.beerRating {
+  text-align: center;
+  align-items: center;
+  line-height: 1;
+  margin-top: 20%;
+}
+
+.ratingNumber {
+  font-size: calc(1em + 1vmin);
+  font-weight: bold;
+  text-align: center;
+}
+
+.ratingLabel {
+  font-size: 0.75em;
+}
+
 @media only screen and (max-width: 700px) {
   .notesContainer {
     display: none;
   }
+
+  .ratingContainer {
+    width: 75px;
+    height: 75px;
+  }
+
+  .beerRating {
+    min-height: 75px;
+    height: 75px;
+    width: 75px;
+    line-height: 1.1;
+  }
 }
 
-.beerRating {
-  min-height: 100px;
-  height: 100px;
-  width: 100px;
-  padding-top: 25px;
-  text-align: center;
-  align-items: center;
-  line-height: 1;
-}
-
-.ratingNumber {
-  font-size: 32px;
-  font-weight: bold;
-  text-align: center;
-}

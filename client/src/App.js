@@ -21,7 +21,8 @@ class App extends Component {
       beers: [],
       lists: [],
       showLogin: false,
-      showSignup: false
+      showSignup: false,
+      showLists: false
     };
   }
 
@@ -55,6 +56,12 @@ class App extends Component {
 		}
   }
 
+  handleListsToggle = () => {
+    this.setState({
+      showLists: !this.state.showLists
+    });
+  }
+
   getUserData() {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
@@ -75,13 +82,19 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} handleLoginModal={this.handleLoginModal.bind(this)} handleSignupModal={this.handleSignupModal.bind(this)} />
+          <Nav
+            isAuth={this.state.isAuth}
+            updateUser={this.updateUser.bind(this)}
+            handleLoginModal={this.handleLoginModal.bind(this)}
+            handleSignupModal={this.handleSignupModal.bind(this)}
+            handleListsToggle={this.handleListsToggle.bind(this)}
+          />
           <Switch>
             <Route exact path='/'
               render={(props) => <Welcome {...props} isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} handleSignupModal={this.handleSignupModal.bind(this)} />} />
             <Route
               exact path='/dashboard'
-              render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} {...props} />}
+              render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} showLists={this.state.showLists} handleListsToggle={this.handleListsToggle.bind(this)} {...props} />}
             />
             <Route path='*' component={NoMatch} />
           </Switch>

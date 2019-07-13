@@ -1,9 +1,9 @@
 .beerContainer {
-  width: 700px;
   max-width: 100%;
+  margin-bottom: 15vmin;
 }
 
 .listTitle {
-  font-weight: bold;
-  font-size: 32px;
+  font-size: calc(1em + 1vw);
+  letter-spacing: 0;
 }

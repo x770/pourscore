@@ -73,7 +73,7 @@ class AddModal extends Component {
             <Form.Control name='beerNotes' as='textarea' row='5' onChange={this.handleInputChange}></Form.Control>
           </Form.Group>
           <hr />
-          <Button onClick={this.handleFormSubmit}>
+          <Button className='submitButton' onClick={this.handleFormSubmit}>
             Submit Rating
           </Button>
         </Form>

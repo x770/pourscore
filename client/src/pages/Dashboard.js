@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
 import { BeerContainer } from '../components/BeerContainer';
+import ListsContainer from '../components/ListsContainer';
 import AddModal from '../components/AddModal';
+import ListsModal from '../components/ListsModal';
 import axios from 'axios';
 import './dashboard.css';
 
@@ -59,14 +61,22 @@ class Dashboard extends Component {
 						You've rated {this.state.beersArray.length} beers with Pourscore.
 						How about <span className='addBeerPrompt' onClick={this.showAddModal}>adding a new beer</span>?
 					</h3> 
-					<hr />
 					<br />
 				</div>
 				<div>
 					<AddModal show={this.state.show} hideModal={this.hideAddModal.bind(this)} username={this.props.currentUser} userId={this.state.userId} reload={this.componentDidMount.bind(this)} />
 				</div>
-				<div>
-					<BeerContainer test='test' beersArray={this.state.beersArray} loadBeers={this.loadBeers.bind(this)}/>
+				<ListsModal
+					showLists={this.props.showLists}
+					handleListsToggle={this.props.handleListsToggle}
+					lists={this.props.lists}
+				/>
+				<div className='gridContainer'>
+					<ListsContainer lists={this.props.lists} />
+					<BeerContainer
+						beersArray={this.state.beersArray}
+						loadBeers={this.loadBeers.bind(this)}
+					/>
 				</div>
 			</Container>
 		);
