@@ -1,16 +1,36 @@
 nav {
   width: 100vw;
   max-width: 100vw;
-  height: 64px;
-  max-height: 64px;
   background-color: #F7CB14;
+  color: black;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+  font-family: 'Bungee';
+  color: black;
+  letter-spacing: 2px;
+  font-size: 24px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.brand:hover {
+  text-decoration: none;
   color: black;
 }
 
-.linksGroup {
-  float: right;
-  height: 100%;
-  line-height: 64px;
+.mainNav {
+  list-style-type: none;
+  display: none;
+}
+
+.mainNav li {
+  text-align: center;
+  margin: 15px auto;
 }
 
 .navLink {
@@ -21,24 +41,55 @@ nav {
   font-weight: 600;
 }
 
-.navLink:hover, .navLink:focus {
-  color: black;
+.navLink:hover {
   cursor: pointer;
-  text-decoration: none;
+  color: black;
+  text-decoration: underline;
 }
 
-.brand {
-  font-family: 'Bungee';
-  height: 64px;
-  line-height: 64px;
+.navbarToggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer; 
   color: black;
-  letter-spacing: 2px;
   font-size: 24px;
-  text-decoration: none;
 }
 
-.brand:hover, .brand:focus, .brand:active {
-  color: black;
-  cursor: pointer;
-  text-decoration: none;
+.show {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+    height: 70px;
+    align-items: center;
+  }
+
+  .mainNav {
+    display: flex;
+    margin-right: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .mainNav li {
+    margin: 0;
+  }
+
+  .navLink {
+    margin-left: 40px;
+  }
+
+  .brand {
+    margin-top: 0;
+  }
+
+ .navbarToggle {
+    display: none;
+  }
+  
 }

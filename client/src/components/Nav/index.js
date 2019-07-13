@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Container from '../Container';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
 import './style.css';
@@ -8,8 +7,9 @@ import './style.css';
 class Nav extends Component {
   state = {
 		showLogin: false,
-		showSignup: false
-	}
+    showSignup: false,
+    showMenu: false
+  }
 
 	handleLoginModal = () => {
 		if (this.state.showLogin === false) {
@@ -27,6 +27,12 @@ class Nav extends Component {
 		}
   }
 
+  handleMenuToggle = () => {
+    this.setState({
+      showMenu: !this.state.showMenu
+    })
+  }
+
   logOut = () => {
     localStorage.clear();
     window.location.replace('/');
@@ -36,44 +42,46 @@ class Nav extends Component {
     if (this.props.isAuth === true) {
       return (
         <nav>
-          <Container>
-            <Link to='/' className='brand'>
-              POURSCORE
-            </Link>
-          <span className='linksGroup'>
-            <Link to='/dashboard' className='navLink'>Dashboard</Link>
-            <span className='navLink' onClick={this.logOut} >
-              Log Out
-            </span>
+          <Link to='/' className='brand'>POURSCORE</Link>
+          <span className='navbarToggle' onClick={this.handleMenuToggle} >
+            <i class="fas fa-bars"></i>
           </span>
-          </Container>
+          <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+            <li>
+              <Link to='/dashboard' className='navLink'>Dashboard</Link>
+            </li>
+            <li>
+              <span className='navLink' onClick={this.logOut}>Log Out</span>
+            </li>
+          </ul>
         </nav>
       )
     } else {
       return (
         <nav>
-          <Container>
-            
-            <Link to='/' className='brand'>
-              POURSCORE
-            </Link>
-            <span className='linksGroup'>
-              <Link to='/' className='navLink'>Welcome</Link>
-              <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
-              <span className='navLink' onClick={this.handleSignupModal}>Sign Up</span>
-            </span>
-            <Login
+        <Link to='/' className='brand'>POURSCORE</Link>
+        <span className='navbarToggle' onClick={this.handleMenuToggle} >
+          <i class="fas fa-bars"></i>
+        </span>
+        <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+          <li>
+            <span className='navLink' onClick={this.handleLoginModal}>Log in</span>
+          </li>
+          <li>
+            <span className='navLink' onClick={this.handleSignupModal}>Sign Up</span>
+          </li>
+          </ul>
+          <Login
               show={this.state.showLogin}
               hide={this.handleLoginModal.bind(this)}
               updateUser={this.props.updateUser}
             />
-            <Signup
-              show={this.state.showSignup}
-              hide={this.handleSignupModal.bind(this)}
-              updateUser={this.props.updateUser}
-            />
-          </Container>
-        </nav>
+          <Signup
+            show={this.state.showSignup}
+            hide={this.handleSignupModal.bind(this)}
+            updateUser={this.props.updateUser}
+          />
+      </nav>
       )
     }
 
