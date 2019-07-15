@@ -6,7 +6,19 @@ class ListsContainer extends Component {
     return (
       <div style={{position: 'relative'}}>
         <div className='listsContainer'>
-          <h2>Your lists ({this.props.lists.length})</h2>
+          <h2>Your lists ({this.props.listsArray.length + 1})</h2> <br />
+          <ul>
+            <li>All Beers</li>
+            {this.props.listsArray.map(
+              list => (
+                <li
+                  key={list._id}
+                >
+                  {list.name}
+                </li>
+              )
+            )}
+          </ul>
         </div>
       </div>
     )

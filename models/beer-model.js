@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const beerSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
+  lists: [{type : Schema.Types.ObjectId, ref: 'List'}],
   beerName: { type: String, required: true },
   breweryName: { type: String, required: true },
   beerRating: Number,

@@ -13,7 +13,8 @@ class Dashboard extends Component {
 	state = { 
 		show: false,
 		userId: '',
-		beersArray: []
+		beersArray: [],
+		listsArray: []
 	}
 
 	componentDidMount = () => {
@@ -34,7 +35,8 @@ class Dashboard extends Component {
 			data => {
 				let currentUserId = data.data._id;
 				this.setState({ userId: currentUserId }, function stateUpdateComplete() {
-					this.loadBeers()
+					this.loadBeers();
+					this.loadLists();
 				})
 			}
 		).catch(err => console.log(err))
@@ -45,6 +47,15 @@ class Dashboard extends Component {
 		axios.get('/api/beers/' + userId).then(
 			data => {
 				this.setState({ beersArray: data.data });
+			}
+		).catch(err => console.log(err))
+	}
+
+	loadLists = () => {
+		let userId = this.state.userId;
+		axios.get('/api/lists/' + userId).then(
+			data => {
+				this.setState({ listsArray: data.data });
 			}
 		).catch(err => console.log(err))
 	}
@@ -72,7 +83,7 @@ class Dashboard extends Component {
 					lists={this.props.lists}
 				/>
 				<div className='gridContainer'>
-					<ListsContainer lists={this.props.lists} />
+					<ListsContainer listsArray={this.state.listsArray} />
 					<BeerContainer
 						beersArray={this.state.beersArray}
 						loadBeers={this.loadBeers.bind(this)}

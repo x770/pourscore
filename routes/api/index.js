@@ -1,12 +1,14 @@
 const router = require('express').Router();
-const userRoutes = require('./users');
-const beerRoutes = require('./beers');
+const usersRoutes = require('./users');
+const beersRoutes = require('./beers');
 const signupRoute = require('./signup');
 const loginRoute = require('./login');
+const listsRoutes = require('./lists');
 
-router.use('/users', userRoutes);
-router.use('/beers', beerRoutes);
+router.use('/users', usersRoutes);
+router.use('/beers', beersRoutes);
 router.use('/signup', signupRoute);
 router.use('/login', loginRoute);
+router.use('/lists', listsRoutes);
 
 module.exports = router;
