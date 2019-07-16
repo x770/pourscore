@@ -5,7 +5,8 @@ router.route('/')
   .post(function (req, res) {
     db.List.create({
       name: req.body.name,
-      user: req.body.user
+      user: req.body.user,
+      beers: req.body.beers
     }).then(function (data) {
       res.json(data)
     }).catch(err => {

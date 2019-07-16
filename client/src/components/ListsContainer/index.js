@@ -15,6 +15,8 @@ class ListsContainer extends Component {
       <div style={{position: 'relative'}}>
         <div className='listsContainer'>
           <h2>Your lists ({this.props.listsArray.length + 1})</h2> <br />
+          <hr />
+          <h2 onClick={this.props.handleNewListModal}>+ Add New List</h2>
           <ul>
             <li>All Beers</li>
             {this.props.listsArray.map(

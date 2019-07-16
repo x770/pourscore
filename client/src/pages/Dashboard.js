@@ -5,13 +5,16 @@ import BeerContainer from '../components/BeerContainer';
 import ListsContainer from '../components/ListsContainer';
 import AddModal from '../components/AddModal';
 import ListsModal from '../components/ListsModal';
+import NewListModal from '../components/NewListModal';
 import axios from 'axios';
 import './dashboard.css';
 
 class Dashboard extends Component {
 
 	state = { 
-		show: false,
+		showAddModal: false,
+		showNewListModal: false,
+		allBeers: [],
 		listId: '',
 		totalBeers: '',
 		beersArray: [],
@@ -31,7 +34,11 @@ class Dashboard extends Component {
 	}
 
 	handleAddModal = () => {
-		this.setState({ show: !this.state.show })
+		this.setState({ showAddModal: !this.state.showAddModal })
+	}
+
+	handleNewListModal = () => {
+		this.setState({ showNewListModal: !this.state.showNewListModal })
 	}
 
 	fetchAllBeers = () => {
@@ -40,6 +47,7 @@ class Dashboard extends Component {
 				.then(response => {
 					this.setState({
 						totalBeers: response.data.length,
+						allBeers: response.data,
 						beersArray: response.data
 					})
 				}).catch(err => console.log(err))
@@ -100,7 +108,10 @@ class Dashboard extends Component {
 					<br />
 				</div>
 				<div>
-					<AddModal show={this.state.show} hideModal={this.handleAddModal.bind(this)} username={this.props.currentUser} userId={this.props.user_id} reload={this.componentDidMount.bind(this)} />
+					<AddModal show={this.state.showAddModal} hideModal={this.handleAddModal.bind(this)} username={this.props.currentUser} userId={this.props.user_id} reload={this.componentDidMount.bind(this)} />
+				</div>
+				<div>
+					<NewListModal show={this.state.showNewListModal} hideModal={this.handleNewListModal.bind(this)} userId={this.props.user_id} allBeers={this.state.allBeers} reload={this.componentDidMount.bind(this)} />
 				</div>
 				<ListsModal
 					showLists={this.props.showLists}
@@ -110,6 +121,7 @@ class Dashboard extends Component {
 				<div className='gridContainer'>
 					<ListsContainer
 						listsArray={this.state.allLists}
+						handleNewListModal={this.handleNewListModal.bind(this)}
 						updateListId={this.updateListId.bind(this)}
 						fetchListBeers={this.fetchListBeers.bind(this)}
 					/>
