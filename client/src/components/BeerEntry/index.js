@@ -53,7 +53,9 @@ class BeerEntry extends Component {
           </div>
           <div className='ratingContainer'>
             <div className='beerRating'>
-              <div className='ratingNumber'>{this.formatRating(this.props.beerRating)}</div>
+              <div className='ratingNumber'>{
+                this.formatRating(this.props.beerRating)
+              }</div>
               <div className='ratingLabel'>RATING</div>
             </div>
           </div>

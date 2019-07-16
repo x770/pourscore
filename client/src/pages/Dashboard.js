@@ -25,7 +25,7 @@ class Dashboard extends Component {
 		this.fetchAllBeers();
 		this.fetchAllLists();
 	}
-
+	
 	handleAddModal = () => {
 		this.setState({ showAddModal: !this.state.showAddModal })
 	}
@@ -35,18 +35,14 @@ class Dashboard extends Component {
 	}
 
 	fetchAllBeers = () => {
-		if (this.state.listId === '') {
-			axios.get('/api/beers/user/' + this.props.user_id)
-				.then(response => {
-					this.setState({
-						totalBeers: response.data.length,
-						allBeers: response.data,
-						beersArray: response.data
-					})
-				}).catch(err => console.log(err))
-		} else {
-			this.fetchListBeers(this.state.listId);
-		}
+		axios.get('/api/beers/user/' + this.props.user_id)
+			.then(response => {
+				this.setState({
+					totalBeers: response.data.length,
+					allBeers: response.data,
+					beersArray: response.data
+				})
+			}).catch(err => console.log(err))
 	}
 
 	fetchAllLists = () => {
@@ -65,29 +61,29 @@ class Dashboard extends Component {
 		})
 	}
 
+
 	// Fetch array of beers based on list selection
-	// fetchListBeers = (listId) => {
-	// 	var beersArray = [];
-	// 	var idsArray = [];
+	fetchListBeers = (listId) => {
+		var beersArray = [];
+		var idsArray = [];
 
-	// 	// GET request to grab array of list's beers' ids
-	// 	axios.get('/api/lists/' + listId)
-	// 		.then(response => {
-	// 			let beerIds = response.data[0].beers;
-	// 			beerIds.map(beerId => idsArray.push(beerId));
+		// GET request to grab array of list's beers' ids
+		axios.get('/api/lists/' + listId)
+			.then(response => {
+				let beerIds = response.data[0].beers;
+				beerIds.map(beerId => idsArray.push(beerId));
 
-	// 			console.log(idsArray);
-	// 			response.data[0].beers.map(beerId => {
-	// 				axios.get('/api/beers/' + beerId).then(
-	// 					response => {
-	// 						beersArray.push(response.data[0]);
-	// 					})
-	// 				console.log(beersArray);
-	// 			});
-	// 		})
-		
-	// 	console.log(beersArray);
-	// }
+				response.data[0].beers.map(beerId => {
+					axios.get('/api/beers/' + beerId).then(
+						response => {
+							beersArray.push(response.data[0]);
+						})
+				});
+			})
+		console.log(beersArray);
+		// This setState appears empty on first run which causes a blank rendering; if hard-coded, it works first time
+		this.setState({ beersArray: beersArray });
+	}
 
 	render() {
 		if (!this.props.isAuth) {
@@ -121,11 +117,11 @@ class Dashboard extends Component {
 						handleNewListModal={this.handleNewListModal.bind(this)}
 						updateListId={this.updateListId.bind(this)}
 						fetchAllBeers={this.fetchAllBeers.bind(this)}
+						fetchListBeers={this.fetchListBeers.bind(this)}
 					/>
 					<BeerContainer
+						allBeers={this.state.allBeers}
 						beersArray={this.state.beersArray}
-						list_id={this.state.listId}
-						fetchBeers={this.fetchAllBeers.bind(this)}
 					/>
 				</div>
 			</Container>

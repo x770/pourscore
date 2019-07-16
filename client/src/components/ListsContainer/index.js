@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import './style.css';
 
 class ListsContainer extends Component {
-  findListId = (event) => {
-    let list_id = event.target.getAttribute('list_id');
+
+  updateListId = (event) => {
+    const list_id = event.target.getAttribute('list_id');
+
     this.props.updateListId(list_id);
+    this.props.fetchListBeers(list_id);
   }
 
   resetListId = () => {
     this.props.updateListId('');
+    this.props.fetchAllBeers();
   }
 
   render() {
@@ -25,7 +29,7 @@ class ListsContainer extends Component {
                 <li
                   key={list._id}
                   list_id={list._id}
-                  onClick={this.findListId}
+                  onClick={this.updateListId}
                 >
                   {list.name} ({list.beers.length})
                 </li>
