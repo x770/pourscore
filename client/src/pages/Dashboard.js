@@ -26,13 +26,6 @@ class Dashboard extends Component {
 		this.fetchAllLists();
 	}
 
-	componentDidUpdate = (prevProps, prevState) => {
-		if (prevState.listId !== this.state.listId) {
-			console.log('List change')
-			this.fetchListBeers(this.state.listId)
-		}
-	}
-
 	handleAddModal = () => {
 		this.setState({ showAddModal: !this.state.showAddModal })
 	}
@@ -51,6 +44,8 @@ class Dashboard extends Component {
 						beersArray: response.data
 					})
 				}).catch(err => console.log(err))
+		} else {
+			this.fetchListBeers(this.state.listId);
 		}
 	}
 
@@ -65,33 +60,34 @@ class Dashboard extends Component {
 
 	// Update current list based off of user selection
 	updateListId = (list_id) => {
-		this.setState({ listId: list_id })
+		this.setState({
+			listId: list_id,
+		})
 	}
 
 	// Fetch array of beers based on list selection
-	fetchListBeers = (listId) => {
-		var beersArray = [];
-		var idsArray = [];
+	// fetchListBeers = (listId) => {
+	// 	var beersArray = [];
+	// 	var idsArray = [];
 
-		// GET request to grab array of list's beers' ids
-		axios.get('/api/lists/' + listId)
-			.then(response => {
-				let beerIds = response.data[0].beers;
-				beerIds.map(beerId => idsArray.push(beerId));
+	// 	// GET request to grab array of list's beers' ids
+	// 	axios.get('/api/lists/' + listId)
+	// 		.then(response => {
+	// 			let beerIds = response.data[0].beers;
+	// 			beerIds.map(beerId => idsArray.push(beerId));
 
-				console.log(idsArray);
-				response.data[0].beers.map(beerId => {
-					axios.get('/api/beers/' + beerId).then(
-						response => {
-							beersArray.push(response.data[0]);
-						})
-				});
-			})
-		this.setState({ beersArray: beersArray }, () => {
-			console.log(beersArray);
-			console.log(this.state.beersArray)
-		})
-	}
+	// 			console.log(idsArray);
+	// 			response.data[0].beers.map(beerId => {
+	// 				axios.get('/api/beers/' + beerId).then(
+	// 					response => {
+	// 						beersArray.push(response.data[0]);
+	// 					})
+	// 				console.log(beersArray);
+	// 			});
+	// 		})
+		
+	// 	console.log(beersArray);
+	// }
 
 	render() {
 		if (!this.props.isAuth) {
@@ -125,7 +121,6 @@ class Dashboard extends Component {
 						handleNewListModal={this.handleNewListModal.bind(this)}
 						updateListId={this.updateListId.bind(this)}
 						fetchAllBeers={this.fetchAllBeers.bind(this)}
-						fetchListBeers={this.fetchListBeers.bind(this)}
 					/>
 					<BeerContainer
 						beersArray={this.state.beersArray}

@@ -3,17 +3,12 @@ import './style.css';
 
 class ListsContainer extends Component {
   findListId = (event) => {
-    event.preventDefault();
-    
     let list_id = event.target.getAttribute('list_id');
     this.props.updateListId(list_id);
   }
 
-  resetListId = (event) => {
-    event.preventDefault();
-
+  resetListId = () => {
     this.props.updateListId('');
-    this.props.fetchAllBeers();
   }
 
   render() {

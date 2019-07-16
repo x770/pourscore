@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BeerEntry from '../BeerEntry';
-import axios from 'axios';
 import './style.css';
 
 class BeerContainer extends Component {
