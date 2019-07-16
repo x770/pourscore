@@ -35,7 +35,7 @@ class BeerEntry extends Component {
     axios.delete('/api/beers/' + entryId)
       .then(
         () => {
-          this.props.loadBeers();
+          this.props.fetchBeers();
         }
       )
       .catch(err => console.log(err))

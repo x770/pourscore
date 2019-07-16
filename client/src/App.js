@@ -7,19 +7,18 @@ import Dashboard from './pages/Dashboard';
 import NoMatch from './pages/NoMatch';
 import Login from './components/LoginModal';
 import Signup from './components/SignupModal';
-import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
     const authStatus = JSON.parse(localStorage.getItem('isAuth'));
     const currentUser = localStorage.getItem('currentUser');
+    const user_id = localStorage.getItem('user_id');
 
     this.state = {
       currentUser: currentUser,
       isAuth: authStatus,
-      beers: [],
-      lists: [],
+      userId: user_id,
       showLogin: false,
       showSignup: false,
       showLists: false
@@ -29,15 +28,15 @@ class App extends Component {
   componentDidMount() {
     const isAuth = JSON.parse(localStorage.getItem('isAuth'));
     const currentUser = localStorage.getItem('currentUser');
+    const user_id = localStorage.getItem('user_id');
 
     this.setState({
-        isAuth: isAuth,
-        currentUser: currentUser,
-        showLogin: false,
-        showSignup: false
-      });
-
-    this.getUserData();
+      isAuth: isAuth,
+      currentUser: currentUser,
+      userId: user_id,
+      showLogin: false,
+      showSignup: false
+    });
   }
 
   handleLoginModal = () => {
@@ -62,19 +61,10 @@ class App extends Component {
     });
   }
 
-  getUserData() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
-      axios.get('/api/users/' + currentUser)
-			.then(response => {
-        this.setState({ beers: response.data.beers });
-      })
-    }
-  }
-
-  updateUser = (username, beers, lists, authStatus) => {
-    this.setState({ currentUser: username, beers: beers, lists: lists, isAuth: authStatus });
+  updateUser = (username, user_id, beers, lists, authStatus) => {
+    this.setState({ currentUser: username, userId: user_id, beers: beers, lists: lists, isAuth: authStatus });
     localStorage.setItem('currentUser', username);
+    localStorage.setItem('user_id', user_id);
     localStorage.setItem('isAuth', authStatus);
   }
 
@@ -84,17 +74,16 @@ class App extends Component {
         <div>
           <Nav
             isAuth={this.state.isAuth}
-            updateUser={this.updateUser.bind(this)}
             handleLoginModal={this.handleLoginModal.bind(this)}
             handleSignupModal={this.handleSignupModal.bind(this)}
             handleListsToggle={this.handleListsToggle.bind(this)}
           />
           <Switch>
             <Route exact path='/'
-              render={(props) => <Welcome {...props} isAuth={this.state.isAuth} updateUser={this.updateUser.bind(this)} handleSignupModal={this.handleSignupModal.bind(this)} />} />
+              render={(props) => <Welcome {...props} isAuth={this.state.isAuth} handleSignupModal={this.handleSignupModal.bind(this)} />} />
             <Route
               exact path='/dashboard'
-              render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} beers={this.state.beers} lists={this.state.lists} showLists={this.state.showLists} handleListsToggle={this.handleListsToggle.bind(this)} {...props} />}
+              render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} user_id={this.state.userId} showLists={this.state.showLists} handleListsToggle={this.handleListsToggle.bind(this)} {...props} />}
             />
             <Route path='*' component={NoMatch} />
           </Switch>

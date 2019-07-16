@@ -14,12 +14,21 @@ router.route('/')
     })
   });
 
-router.route('/:userId')
+router.route('/:listId')
+  .get(function (req, res) {
+    db.List.find({
+      _id: req.params.listId
+    }).then(data => {
+      return res.json(data)
+    }).catch(err => {
+      res.json(err)
+    })
+  });
+
+router.route('/user/:userId')
   .get(function (req, res) {
     db.List.find({
       user: req.params.userId
-    }).sort({
-      date: -1
     }).then(function (data) {
       return res.json(data)
     }).catch(err => {

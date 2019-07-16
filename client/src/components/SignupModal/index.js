@@ -32,7 +32,7 @@ class Signup extends Component {
 				username: this.state.username,
 				password: this.state.password
 			}).then(data => {
-				this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true);
+				this.props.updateUser(data.data.username, data.data._id, data.data.beers, data.data.lists, true);
 				this.props.hide();
 				window.location.replace('/');
 			}).catch(err => console.log(err))

@@ -18,6 +18,15 @@ router.route('/')
   });
 
 router.route('/:beerId')
+  .get(function (req, res) {
+    db.Beer.find({
+      _id: req.params.beerId
+    }).then(function (data) {
+      return res.json(data)
+    }).catch(err => {
+      res.json(err);
+    })
+  })
   .delete(function (req, res) {
     db.Beer.deleteOne({
       _id: req.params.beerId
@@ -28,7 +37,7 @@ router.route('/:beerId')
     })
   })
 
-router.route('/:userId')
+router.route('/user/:userId')
   .get(function (req, res) {
     db.Beer.find({
       user: req.params.userId

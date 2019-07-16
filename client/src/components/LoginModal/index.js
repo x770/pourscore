@@ -32,7 +32,7 @@ class Login extends Component {
 				password: this.state.password
 			}).then(data => {
 				if (data.data.username) {
-					this.props.updateUser(data.data.username, data.data.beers, data.data.lists, true);
+					this.props.updateUser(data.data.username, data.data._id, data.data.beers, data.data.lists, true);
 					this.props.hide();
 				}
 				else {

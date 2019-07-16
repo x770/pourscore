@@ -7,7 +7,7 @@ class ListsModal extends Component {
     return (
       <div className={this.props.showLists ? 'sidebar open' : 'sidebar'}>
         <div className={'listsModal'}>
-          <h2>Your Lists ({this.props.lists.length})</h2>
+          <h2>Your Lists ()</h2>
           <span className={'closeButton'} onClick={this.props.handleListsToggle}>&#10005;</span>
         </div>
       </div>

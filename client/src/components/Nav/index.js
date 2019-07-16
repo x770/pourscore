@@ -46,7 +46,7 @@ class Nav extends Component {
           </span>
           <Link to='/' className='brand'>POURSCORE</Link>
           <span className='navbarToggle' onClick={this.handleMenuToggle} >
-            <i class="fas fa-cog"></i>
+            <i className="fas fa-cog"></i>
           </span>
           <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
             <li>
