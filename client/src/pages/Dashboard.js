@@ -121,8 +121,10 @@ class Dashboard extends Component {
 				<div className='gridContainer'>
 					<ListsContainer
 						listsArray={this.state.allLists}
+						list_id={this.state.listId}
 						handleNewListModal={this.handleNewListModal.bind(this)}
 						updateListId={this.updateListId.bind(this)}
+						fetchAllBeers={this.fetchAllBeers.bind(this)}
 						fetchListBeers={this.fetchListBeers.bind(this)}
 					/>
 					<BeerContainer

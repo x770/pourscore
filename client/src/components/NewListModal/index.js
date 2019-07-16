@@ -28,8 +28,6 @@ class NewListModal extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state.listName);
-    console.log(this.state.beers);
     axios.post('/api/lists', {
       name: this.state.listName,
       user: this.props.userId,

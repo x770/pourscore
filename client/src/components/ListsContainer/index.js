@@ -9,6 +9,12 @@ class ListsContainer extends Component {
     this.props.updateListId(list_id);
   }
 
+  resetListId = (event) => {
+    event.preventDefault();
+
+    this.props.updateListId('');
+    this.props.fetchAllBeers();
+  }
 
   render() {
     return (
@@ -18,7 +24,7 @@ class ListsContainer extends Component {
           <hr />
           <h2 onClick={this.props.handleNewListModal}>+ Add New List</h2>
           <ul>
-            <li>All Beers</li>
+            <li list_id={''} onClick={this.resetListId} >All Beers</li>
             {this.props.listsArray.map(
               list => (
                 <li
