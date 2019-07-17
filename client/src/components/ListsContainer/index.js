@@ -19,17 +19,18 @@ class ListsContainer extends Component {
     return (
       <div style={{position: 'relative'}}>
         <div className='listsContainer'>
-          <h2>Your lists ({this.props.listsArray.length + 1})</h2> <br />
+          <h2>Your lists ({this.props.listsArray.length + 1})</h2>
           <hr />
-          <h2 onClick={this.props.handleNewListModal}>+ Add New List</h2>
+          <h3 onClick={this.props.handleNewListModal} className='newListButton'>+ Add New List</h3>
           <ul>
-            <li list_id={''} onClick={this.resetListId} >All Beers</li>
+            <li list_id={''} onClick={this.resetListId} className='listElement'>All Beers</li>
             {this.props.listsArray.map(
               list => (
                 <li
                   key={list._id}
                   list_id={list._id}
                   onClick={this.updateListId}
+                  className='listElement'
                 >
                   {list.name} ({list.beers.length})
                 </li>

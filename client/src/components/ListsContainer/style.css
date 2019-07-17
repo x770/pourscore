@@ -1,9 +1,35 @@
 .listsContainer {
-  margin-right: 10vw;
+  margin-right: 2vw;
+  width: 13vw;
 }
 
 .listsContainer > h2 {
   font-size: 1.5vw;
+}
+
+.listElement {
+  font-size: 1.25vw;
+  margin-bottom: 1vh;
+}
+
+.listElement:hover {
+  font-size: 1.25vw;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.newListButton {
+  background-color: #F7CB14;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 2vw;
+  max-width: 90%;
+}
+
+.newListButton:hover {
+  cursor: pointer;
+  filter: brightness(105%);
 }
 
 @media only screen and (max-width: 768px) {
