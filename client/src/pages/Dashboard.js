@@ -25,7 +25,7 @@ class Dashboard extends Component {
 		this.fetchAllBeers();
 		this.fetchAllLists();
 	}
-	
+
 	handleAddModal = () => {
 		this.setState({ showAddModal: !this.state.showAddModal })
 	}
@@ -61,28 +61,21 @@ class Dashboard extends Component {
 		})
 	}
 
-
 	// Fetch array of beers based on list selection
-	fetchListBeers = (listId) => {
-		var beersArray = [];
-		var idsArray = [];
+	fetchListBeers = async (listId) => {
 
-		// GET request to grab array of list's beers' ids
-		axios.get('/api/lists/' + listId)
-			.then(response => {
-				let beerIds = response.data[0].beers;
-				beerIds.map(beerId => idsArray.push(beerId));
+		let idsRes = await axios.get('/api/lists/' + listId);
+		let idsArray = idsRes.data[0].beers;
 
-				response.data[0].beers.map(beerId => {
-					axios.get('/api/beers/' + beerId).then(
-						response => {
-							beersArray.push(response.data[0]);
-						})
-				});
+		const promises = idsArray.map(
+			async beerId => {
+				const response = await axios.get('/api/beers/' + beerId)
+				return response.data[0]
 			})
-		console.log(beersArray);
-		// This setState appears empty on first run which causes a blank rendering; if hard-coded, it works first time
-		this.setState({ beersArray: beersArray });
+		
+		const results = await Promise.all(promises);
+
+		this.setState({ beersArray: results });
 	}
 
 	render() {
