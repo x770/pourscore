@@ -4,11 +4,11 @@ import './style.css';
 
 class ListsContainer extends Component {
 
-  updateListId = (event) => {
-    const list_id = event.target.getAttribute('list_id');
+  updateListId = async (event) => {
+    const list_id = await event.target.getAttribute('list_id');
 
-    this.props.updateListId(list_id);
-    this.props.fetchListBeers(list_id);
+    await this.props.updateListId(list_id);
+    await this.props.fetchListBeers(list_id);
   }
 
   resetListId = () => {

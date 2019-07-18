@@ -102,6 +102,12 @@ class Dashboard extends Component {
 					showLists={this.props.showLists}
 					handleListsToggle={this.props.handleListsToggle}
 					lists={this.props.lists}
+					listsArray={this.state.allLists}
+					list_id={this.state.listId}
+					handleNewListModal={this.handleNewListModal.bind(this)}
+					updateListId={this.updateListId.bind(this)}
+					fetchAllBeers={this.fetchAllBeers.bind(this)}
+					fetchListBeers={this.fetchListBeers.bind(this)}
 				/>
 				<div className='gridContainer'>
 					<ListsContainer
@@ -116,6 +122,7 @@ class Dashboard extends Component {
 						allBeers={this.state.allBeers}
 						beersArray={this.state.beersArray}
 						fetchBeers={this.fetchAllBeers.bind(this)}
+						fetchListBeers={this.fetchListBeers.bind(this)}
 						listId={this.state.listId}
 					/>
 				</div>

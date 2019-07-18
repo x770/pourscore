@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import DeleteModal from '../DeleteModal';
 import axios from 'axios';
 import './style.css';
 
 class BeerEntry extends Component {
+
+  state = {
+		showDeleteModal: false,
+  }
 
   // Parse ISO8601 date to a 'Month Date, Year' format
   parseDate = (oldDate) => {
@@ -26,8 +31,13 @@ class BeerEntry extends Component {
     return rating.toString();
   }
 
+  // Handle delete modal
+  handleDeleteModal = () => {
+		this.setState({ showDeleteModal: !this.state.showDeleteModal })
+	}
+
   // Handle entry delete
-  handleDelete = event => {
+  deleteBeer = event => {
     event.preventDefault();
 
     let entryId = this.props.entryId;
@@ -56,7 +66,7 @@ class BeerEntry extends Component {
           </div>
           <div className='buttonsContainer'>
             <Button variant='warning' size='sm' >Edit this Beer</Button> &nbsp;
-            <Button variant='outline-danger' size='sm' onClick={this.handleDelete} >Delete this Beer</Button>
+            <Button variant='outline-danger' size='sm' onClick={this.handleDeleteModal} >Delete this Beer</Button>
           </div>
           <div className='ratingContainer'>
             {this.props.beerRating ? (
@@ -72,6 +82,16 @@ class BeerEntry extends Component {
           </div>
         </div>
         <hr />
+        <DeleteModal
+          show={this.state.showDeleteModal}
+          hideModal={this.handleDeleteModal}
+          beerName={this.props.beerName}
+          breweryName={this.props.breweryName}
+          beerRating={this.props.beerRating}
+          formatRating={this.formatRating.bind(this)}
+          deleteBeer={this.deleteBeer.bind(this)}
+          handleDeleteModal={this.handleDeleteModal.bind(this)}
+        />
       </div>
     )
   }
