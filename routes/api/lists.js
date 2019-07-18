@@ -24,7 +24,12 @@ router.route('/:listId')
     }).catch(err => {
       res.json(err)
     })
-  });
+  })
+  .put(function (req, res) {
+    db.List.findOneAndUpdate({ _id: req.params.listId }, req.body)
+      .then(data => { return res.json(data) })
+      .catch(err => {res.json(err)})
+  })
 
 router.route('/user/:userId')
   .get(function (req, res) {

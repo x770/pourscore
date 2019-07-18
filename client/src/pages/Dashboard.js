@@ -87,13 +87,13 @@ class Dashboard extends Component {
 				<div className='welcomeMessage'>
 					<h1>Welcome to your dashboard, <span style={{fontWeight: 'bold'}}>{this.props.currentUser}</span>!</h1>
 					<h3>
-						You've rated {this.state.totalBeers} beers with Pourscore.
+						You've added {this.state.totalBeers} beers to Pourscore.
 						How about <span className='addBeerPrompt' onClick={this.handleAddModal}>adding a new beer</span>?
 					</h3> 
 					<br />
 				</div>
 				<div>
-					<AddModal show={this.state.showAddModal} hideModal={this.handleAddModal.bind(this)} username={this.props.currentUser} userId={this.props.user_id} reload={this.componentDidMount.bind(this)} />
+					<AddModal show={this.state.showAddModal} hideModal={this.handleAddModal.bind(this)} username={this.props.currentUser} userId={this.props.user_id} reload={this.componentDidMount.bind(this)} allLists={this.state.allLists} />
 				</div>
 				<div>
 					<NewListModal show={this.state.showNewListModal} hideModal={this.handleNewListModal.bind(this)} userId={this.props.user_id} allBeers={this.state.allBeers} reload={this.componentDidMount.bind(this)} />
@@ -115,6 +115,8 @@ class Dashboard extends Component {
 					<BeerContainer
 						allBeers={this.state.allBeers}
 						beersArray={this.state.beersArray}
+						fetchBeers={this.fetchAllBeers.bind(this)}
+						listId={this.state.listId}
 					/>
 				</div>
 			</Container>

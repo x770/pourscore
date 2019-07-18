@@ -9,8 +9,9 @@ class AddModal extends Component {
     beerName: '',
     breweryName: '',
     beerRating: '',
-    beerNotes: ''
-  };
+    beerNotes: '',
+    lists: []
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -18,6 +19,14 @@ class AddModal extends Component {
       [name]: value
     });
   };
+
+  handleSelectChange = event => {
+    let selectedOptions = [...event.target.options].filter(o => o.selected).map(o => o.value);
+
+    this.setState({
+      lists: selectedOptions
+    })
+  }
 
   updateRating = event => {
     let rating;
@@ -30,19 +39,33 @@ class AddModal extends Component {
     document.getElementById('sliderOutput').innerText = rating;
   }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = async event => {
     event.preventDefault();
-    axios.post('/api/beers',
-      {
-        user: this.props.userId,
-        beerName: this.state.beerName,
-        breweryName: this.state.breweryName,
-        beerRating: this.state.beerRating,
-        beerNotes: this.state.beerNotes
-      }).then(data => {
-        this.props.hideModal();
-        this.props.reload();
-    }).catch(err => console.log(err))
+
+    let addedRes = await axios.post('/api/beers', {
+      user: this.props.userId,
+      lists: this.state.lists,
+      beerName: this.state.beerName,
+      breweryName: this.state.breweryName,
+      beerRating: this.state.beerRating,
+      beerNotes: this.state.beerNotes
+    })
+
+    let addedBeer = addedRes.data;
+    let beerId = addedBeer._id;
+    let listsArray = addedRes.data.lists;
+
+    const promises = listsArray.map(
+      async listId => {
+        await axios.put(
+          '/api/lists/' + listId,
+          { $push: { beers: beerId } }
+        )
+      })
+    
+    await Promise.all(promises);
+    await this.props.hideModal();
+    await this.props.reload();
   }
 
   render() {
@@ -54,11 +77,11 @@ class AddModal extends Component {
         <Form>
           <Form.Group>
             <Form.Label>Beer name: </Form.Label>
-            <Form.Control type='text' size='sm' name='beerName' onChange={this.handleInputChange}></Form.Control>
+            <Form.Control required type='text' size='sm' name='beerName' onChange={this.handleInputChange}></Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Brewery name: </Form.Label>
-            <Form.Control type='text' size='sm' name='breweryName' onChange={this.handleInputChange}></Form.Control>
+            <Form.Control required type='text' size='sm' name='breweryName' onChange={this.handleInputChange}></Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Beer rating: </Form.Label>
@@ -72,9 +95,21 @@ class AddModal extends Component {
             <Form.Label>Beer notes: </Form.Label>
             <Form.Control name='beerNotes' as='textarea' row='5' onChange={this.handleInputChange}></Form.Control>
           </Form.Group>
+          <Form.Group>
+            <Form.Label>Add this beer to lists: </Form.Label>
+            <Form.Control as='select' multiple name='lists' onChange={this.handleSelectChange}>
+              {this.props.allLists.map(
+                list => (
+                  <option key={list._id} value={list._id} onChange={this.handleSelectChange}>
+                    {list.name}
+                  </option>
+                )
+              )}
+            </Form.Control>
+          </Form.Group>
           <hr />
           <Button className='submitButton' onClick={this.handleFormSubmit}>
-            Submit Rating
+            Submit Beer
           </Button>
         </Form>
       </Modal>

@@ -8,26 +8,30 @@
 }
 
 .listElement {
-  font-size: 1.25vw;
+  font-size: 1em + 1vw;
   margin-bottom: 1vh;
 }
 
 .listElement:hover {
-  font-size: 1.25vw;
+  font-size: 1em + 1vw;
   cursor: pointer;
   text-decoration: underline;
 }
 
 .newListButton {
+  border: none;
+  color: black;
+  font-size: 2vmin;
   background-color: #F7CB14;
   border-radius: 10px;
   text-align: center;
   padding: 5px;
   margin-bottom: 2vw;
-  max-width: 90%;
 }
 
-.newListButton:hover {
+.newListButton:hover, .newListButton:active, .newListButton:focus {
+  background-color: #F7CB14;
+  color: black;
   cursor: pointer;
   filter: brightness(105%);
 }

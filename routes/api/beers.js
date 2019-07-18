@@ -5,6 +5,7 @@ router.route('/')
   .post(function (req, res) {
     db.Beer.create({
       user: req.body.user,
+      lists: req.body.lists,
       beerName: req.body.beerName,
       breweryName: req.body.breweryName,
       beerRating: req.body.beerRating,

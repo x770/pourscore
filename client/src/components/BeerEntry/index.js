@@ -43,27 +43,35 @@ class BeerEntry extends Component {
 
   render() {
     return (
-      <div className='entryContainer'>
-        <div className='beerEntry'>
-          <div className='entryData'>
-            <h3 className='entryTitle'>
-              {this.props.breweryName} {this.props.beerName}
-            </h3>
-            <div className='dateAdded'>Added on {this.parseDate(this.props.dateAdded)}</div>
+      <div>
+        <div className='entryContainer'>
+          <div className='titleContainer'>
+            <h3>{this.props.breweryName} {this.props.beerName}</h3>
           </div>
-          <div className='ratingContainer'>
-            <div className='beerRating'>
-              <div className='ratingNumber'>{
-                this.formatRating(this.props.beerRating)
-              }</div>
-              <div className='ratingLabel'>RATING</div>
-            </div>
+          <div className='dateContainer'>
+            <div>Added on {this.parseDate(this.props.dateAdded)}</div>
           </div>
           <div className='notesContainer'>
-            <div className='notesTitle'>Your notes: <span className='beerNotes'>"{this.props.beerNotes}"</span></div>
+            <div>Your notes: <span className='beerNotes'>"{this.props.beerNotes}"</span></div>
+          </div>
+          <div className='buttonsContainer'>
+            <Button variant='warning' size='sm' >Edit this Beer</Button> &nbsp;
+            <Button variant='outline-danger' size='sm' onClick={this.handleDelete} >Delete this Beer</Button>
+          </div>
+          <div className='ratingContainer'>
+            {this.props.beerRating ? (
+              <div className='beerRating'>
+                <div className='ratingNumber'>{
+                  this.formatRating(this.props.beerRating)
+                }</div>
+                <div className='ratingLabel'>RATING</div>
+              </div>
+            ) : (
+              <div className='emptyRating'></div>
+              )}
           </div>
         </div>
-        <Button variant='outline-danger' size='sm' onClick={this.handleDelete} >Delete this entry</Button>
+        <hr />
       </div>
     )
   }

@@ -9,9 +9,10 @@ class BeerContainer extends Component {
     if (this.props.beersArray.length === 0) {
       return (
         <div className='beerContainer'>
-        <h2 className='listTitle'>Beers You've Rated</h2>
+          <h2 className='listTitle'>Your Beers</h2>
+          <hr />
         <div>
-          <h2>You haven't rated any beers yet!</h2>
+          <h2>You haven't added any beers yet!</h2>
         </div>
       </div>
       )
@@ -20,7 +21,7 @@ class BeerContainer extends Component {
     // Load beers into the beer container
     return (
       <div className='beerContainer'>
-        <h2 className='listTitle'>Beers You've Rated</h2>
+        <h2 className='listTitle'>Your Beers</h2>
         <hr />
         <div>
           {this.props.beersArray.map(beerEntry => (
