@@ -28,6 +28,20 @@ router.route('/:beerId')
       res.json(err);
     })
   })
+  .put(function (req, res) {
+    db.Beer.updateOne(
+      { _id: req.params.beerId },
+      {
+        beerName: req.body.beerName,
+        breweryName: req.body.breweryName,
+        beerRating: req.body.beerRating,
+        beerNotes: req.body.beerNotes
+      }).then(function (data) {
+      return res.json(data)
+    }).catch(err => {
+      res.json(err)
+    })
+  })
   .delete(function (req, res) {
     const beerId = req.params.beerId;
     db.Beer.findByIdAndRemove({ _id: beerId })

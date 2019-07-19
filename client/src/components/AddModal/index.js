@@ -29,13 +29,7 @@ class AddModal extends Component {
   }
 
   updateRating = event => {
-    let rating;
-    // If/else to add .0 to whole numbers for UI rating system; Example: 2 => 2.0
-    if (event.target.value - Math.floor(event.target.value) !== 0) {
-      rating = event.target.value;
-    } else {
-      rating = event.target.value + '.0';
-    }
+    let rating = event.target.value;
     document.getElementById('sliderOutput').innerText = rating;
   }
 
@@ -88,7 +82,7 @@ class AddModal extends Component {
             <Form.Control type='range' name='beerRating' min='0.0' max='5.0' step='0.5' onInput={this.updateRating} onChange={this.handleInputChange}>
             </Form.Control>
             <div className='ratingOutput'>
-              <span className='sliderOutput' id='sliderOutput'></span> / 5.0
+              <span className='sliderOutput' id='sliderOutput'></span> / 5
             </div>
           </Form.Group>
           <Form.Group>

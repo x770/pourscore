@@ -125,6 +125,7 @@ class Dashboard extends Component {
 						fetchListBeers={this.fetchListBeers.bind(this)}
 						listId={this.state.listId}
 						reload={this.componentDidMount.bind(this)}
+						allLists={this.state.allLists}
 					/>
 				</div>
 			</Container>
