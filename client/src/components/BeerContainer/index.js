@@ -34,6 +34,7 @@ class BeerContainer extends Component {
               beerNotes={beerEntry.beerNotes}
               dateAdded={beerEntry.date}
               fetchBeers={this.props.fetchBeers}
+              reload={this.props.reload}
             />
           ))}
         </div>

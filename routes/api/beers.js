@@ -29,13 +29,18 @@ router.route('/:beerId')
     })
   })
   .delete(function (req, res) {
-    db.Beer.deleteOne({
-      _id: req.params.beerId
-    }).then(function (data) {
-      return res.json(data)
-    }).catch(err => {
-      res.json(err);
-    })
+    const beerId = req.params.beerId;
+    db.Beer.findByIdAndRemove({ _id: beerId })
+      .exec(function (err, removed) {
+        db.List.updateMany(
+          { beers: { $in: beerId } },
+          { $pull: { beers: beerId } },
+          { new: true },
+          function (err, removedFromList) {
+            if (err) { console.log(err) }
+            res.status(200).send(removedFromList)
+          })
+      })
   })
 
 router.route('/user/:userId')

@@ -91,6 +91,7 @@ class BeerEntry extends Component {
           formatRating={this.formatRating.bind(this)}
           deleteBeer={this.deleteBeer.bind(this)}
           handleDeleteModal={this.handleDeleteModal.bind(this)}
+          reload={this.props.reload}
         />
       </div>
     )
