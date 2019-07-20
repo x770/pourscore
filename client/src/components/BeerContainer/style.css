@@ -8,3 +8,8 @@
   font-size: calc(1em + 1vw);
   letter-spacing: 0;
 }
+
+.deleteList:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

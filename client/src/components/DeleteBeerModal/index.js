@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './style.css';
 
-class DeleteModal extends Component {
+class DeleteBeerModal extends Component {
 
   handleDeleteConfirm = (event) => {
 
@@ -21,7 +21,7 @@ class DeleteModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <h2>{this.props.breweryName} {this.props.beerName}</h2>
-          <span>Rated {this.props.beerRating} out of 5.0.</span>
+          <span>Rated {this.props.beerRating} out of 5.</span>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' size='sm' onClick={this.handleDeleteConfirm}>Delete this Beer</Button>
@@ -32,4 +32,4 @@ class DeleteModal extends Component {
   }
 }
 
-export default DeleteModal;
+export default DeleteBeerModal;

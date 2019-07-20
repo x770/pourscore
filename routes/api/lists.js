@@ -30,6 +30,13 @@ router.route('/:listId')
       .then(data => { return res.json(data) })
       .catch(err => {res.json(err)})
   })
+  .delete(function (req, res) {
+    db.List.findByIdAndRemove({ _id: req.params.listId })
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(err => { res.json(err) })
+  })
 
 router.route('/user/:userId')
   .get(function (req, res) {

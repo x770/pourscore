@@ -125,6 +125,7 @@ class Dashboard extends Component {
 					<ListsContainer
 						listsArray={this.state.allLists}
 						list_id={this.state.listId}
+						listName={this.state.listName}
 						handleNewListModal={this.handleNewListModal.bind(this)}
 						updateListId={this.updateListId.bind(this)}
 						fetchAllBeers={this.fetchAllBeers.bind(this)}
@@ -135,6 +136,7 @@ class Dashboard extends Component {
 						beersArray={this.state.beersArray}
 						fetchBeers={this.fetchAllBeers.bind(this)}
 						fetchListBeers={this.fetchListBeers.bind(this)}
+						updateListId={this.updateListId.bind(this)}
 						listId={this.state.listId}
 						listName={this.state.listName}
 						reload={this.componentDidMount.bind(this)}

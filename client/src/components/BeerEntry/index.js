@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import DeleteModal from '../DeleteModal';
+import DeleteBeerModal from '../DeleteBeerModal';
 import EditBeerModal from '../EditBeerModal';
 import axios from 'axios';
 import './style.css';
@@ -100,7 +100,7 @@ class BeerEntry extends Component {
           beerId={this.props.entryId}
           reload={this.props.reload}
         />
-        <DeleteModal
+        <DeleteBeerModal
           show={this.state.showDeleteModal}
           hideModal={this.handleDeleteModal}
           beerName={this.props.beerName}

@@ -18,6 +18,10 @@
   text-decoration: underline;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .newListButton {
   border: none;
   width: 85%;
