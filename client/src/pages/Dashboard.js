@@ -16,6 +16,7 @@ class Dashboard extends Component {
 		showNewListModal: false,
 		allBeers: [],
 		listId: '',
+		listName: 'All Beers',
 		totalBeers: '',
 		beersArray: [],
 		allLists: []
@@ -55,9 +56,20 @@ class Dashboard extends Component {
 	}
 
 	// Update current list based off of user selection
-	updateListId = (list_id) => {
-		this.setState({
+	updateListId = async (list_id) => {
+		
+		let listName;
+
+		if (list_id !== '') {
+			let listRes = await axios.get('/api/lists/' + list_id);
+			listName = listRes.data[0].name;
+		} else {
+			listName = 'All Beers'
+		}
+		
+		await this.setState({
 			listId: list_id,
+			listName: listName
 		})
 	}
 
@@ -124,6 +136,7 @@ class Dashboard extends Component {
 						fetchBeers={this.fetchAllBeers.bind(this)}
 						fetchListBeers={this.fetchListBeers.bind(this)}
 						listId={this.state.listId}
+						listName={this.state.listName}
 						reload={this.componentDidMount.bind(this)}
 						allLists={this.state.allLists}
 					/>
