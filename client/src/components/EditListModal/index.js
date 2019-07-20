@@ -10,7 +10,7 @@ class EditListModal extends Component {
   }
 
   componentDidUpdate = async (prevProps, prevState) => {
-    if (prevProps.listName !== this.props.listName) {
+    if (prevProps.listName !== this.props.listName && this.props.listId !== '') {
     
       let listRes = await axios.get('/api/lists/' + this.props.listId)
       let listData = listRes.data[0];
