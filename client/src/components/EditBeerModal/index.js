@@ -49,7 +49,7 @@ class EditBeerModal extends Component {
       beerRating: this.state.beerRating,
       beerNotes: this.state.beerNotes
     })
-
+    
     await this.props.hideModal();
     await this.props.reload();
   }
@@ -58,7 +58,7 @@ class EditBeerModal extends Component {
     return (
       <Modal show={this.props.show} onHide={this.props.hideModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a New Beer</Modal.Title>
+          <Modal.Title>Edit this Beer</Modal.Title>
         </Modal.Header>
         <Form>
           <Form.Group>

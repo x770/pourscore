@@ -9,7 +9,7 @@
   letter-spacing: 0;
 }
 
-.deleteList:hover {
+.editList:hover, .deleteList:hover {
   cursor: pointer;
   text-decoration: underline;
 }

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import BeerEntry from '../BeerEntry';
 import DeleteListModal from '../DeleteListModal';
+import EditListModal from '../EditListModal';
 import axios from 'axios';
 import './style.css';
 
 class BeerContainer extends Component {
 
   state = {
-    showDeleteListModal: false
+    showDeleteListModal: false,
+    showEditListModal: false
   }
 
   handleListDelete = () => {
@@ -21,10 +23,14 @@ class BeerContainer extends Component {
       .catch(err => console.log(err))
   }
 
-  // Handle delete modal
   handleDeleteModal = () => {
     this.setState({ showDeleteListModal: !this.state.showDeleteListModal });
-	}
+  }
+
+  handleEditModal = () => {
+    this.setState({ showEditListModal: !this.state.showEditListModal });
+  }
+  
 
   render() {
     // If the beers array is empty, display a message
@@ -55,7 +61,12 @@ class BeerContainer extends Component {
         <h2 className='listTitle'>
           {this.props.listName}
         </h2>
-        {(this.props.listName !== 'All Beers' ? <span onClick={this.handleDeleteModal} className='deleteList'>Delete this list</span> : '')}
+        {(this.props.listName !== 'All Beers' ?
+          <div>
+            <span onClick={this.handleEditModal} className='editList'>Edit this list</span> &nbsp; | &nbsp;
+            <span onClick={this.handleDeleteModal} className='deleteList'>Delete this list</span>
+          </div>
+          : '')}
         <hr />
         <div>
           {this.props.beersArray.map(beerEntry => (
@@ -80,6 +91,16 @@ class BeerContainer extends Component {
           hideModal={this.handleDeleteModal}
           listName={this.props.listName}
           reload={this.props.reload}
+        />
+        <EditListModal
+          show={this.state.showEditListModal}
+          hideModal={this.handleEditModal}
+          reload={this.props.reload}
+          allBeers={this.props.allBeers}
+          listName={this.props.listName}
+          listId={this.props.listId}
+          listBeers={this.props.beersArray}
+          updateListId={this.props.updateListId}
         />
       </div>
     )

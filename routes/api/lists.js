@@ -19,7 +19,8 @@ router.route('/:listId')
   .get(function (req, res) {
     db.List.find({
       _id: req.params.listId
-    }).then(data => {
+    })
+      .then(data => {
       return res.json(data)
     }).catch(err => {
       res.json(err)
