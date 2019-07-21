@@ -13,6 +13,16 @@ class AddModal extends Component {
     lists: []
   }
 
+  componentDidMount = () => {
+    this.setState({
+      beerName: '',
+      breweryName: '',
+      beerRating: '',
+      beerNotes: '',
+      lists: []
+    })
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -33,8 +43,7 @@ class AddModal extends Component {
     document.getElementById('sliderOutput').innerText = rating;
   }
 
-  handleFormSubmit = async event => {
-    event.preventDefault();
+  handleFormSubmit = async (event) => {
 
     let addedRes = await axios.post('/api/beers', {
       user: this.props.userId,
@@ -56,8 +65,9 @@ class AddModal extends Component {
           { $push: { beers: beerId } }
         )
       })
-    
+  
     await Promise.all(promises);
+    await this.componentDidMount();
     await this.props.hideModal();
     await this.props.reload();
   }
@@ -69,13 +79,28 @@ class AddModal extends Component {
           <Modal.Title>Add a New Beer</Modal.Title>
         </Modal.Header>
         <Form>
+          <span>Fields marked with an (*) are required. </span>
+          <br /> <br />
           <Form.Group>
-            <Form.Label>Beer name: </Form.Label>
-            <Form.Control required type='text' size='sm' name='beerName' onChange={this.handleInputChange}></Form.Control>
+            <Form.Label>Beer name:* </Form.Label>
+            <Form.Control
+              required
+              type='text'
+              size='sm'
+              name='beerName'
+              onChange={this.handleInputChange}
+            ></Form.Control>
           </Form.Group>
           <Form.Group>
-            <Form.Label>Brewery name: </Form.Label>
-            <Form.Control required type='text' size='sm' name='breweryName' onChange={this.handleInputChange}></Form.Control>
+            <Form.Label>Brewery name:* </Form.Label>
+            <Form.Control
+              required
+              type='text'
+              size='sm'
+              name='breweryName'
+              onChange={this.handleInputChange}
+            >
+            </Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Beer rating: </Form.Label>
@@ -102,7 +127,7 @@ class AddModal extends Component {
             </Form.Control>
           </Form.Group>
           <hr />
-          <Button className='submitButton' onClick={this.handleFormSubmit}>
+          <Button type='submit' className='submitButton' onClick={this.handleFormSubmit}>
             Submit Beer
           </Button>
         </Form>

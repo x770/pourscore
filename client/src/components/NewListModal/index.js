@@ -25,17 +25,14 @@ class NewListModal extends Component {
     })
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-    axios.post('/api/lists', {
+  handleFormSubmit = async () => {
+    await axios.post('/api/lists', {
       name: this.state.listName,
       user: this.props.userId,
       beers: this.state.beers
-    }).then(data => {
-      this.props.hideModal();
-      this.props.reload();
-    }).catch(err => console.log(err))
+    })
+    await this.props.hideModal();
+    await this.props.reload();
   }
 
   render() {
@@ -47,7 +44,7 @@ class NewListModal extends Component {
         <Form>
           <Form.Group>
             <Form.Label>List name: </Form.Label>
-            <Form.Control type='text' size='sm' name='listName' onChange={this.handleInputChange}></Form.Control>
+            <Form.Control required type='text' size='sm' name='listName' onChange={this.handleInputChange} ref={this.inputListName}></Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Select beers to add to this list: </Form.Label>
@@ -62,7 +59,7 @@ class NewListModal extends Component {
             </Form.Control>
           </Form.Group>
           <hr />
-          <Button className='submitButton' onClick={this.handleFormSubmit}>
+          <Button type='submit' className='submitButton' onClick={this.handleFormSubmit}>
             Create List
           </Button>
         </Form>

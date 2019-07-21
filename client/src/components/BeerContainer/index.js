@@ -38,7 +38,10 @@ class BeerContainer extends Component {
       return (
         <div className='beerContainer'>
           <h2 className='listTitle'>{this.props.listName}</h2>
-          {(this.props.listName !== 'All Beers' ? <span onClick={this.handleDeleteModal} className='deleteList'>Delete this list</span> : '')}
+          {(this.props.listName !== 'All Beers' ? <div>
+            <span onClick={this.handleEditModal} className='editList'>Edit this list</span> &nbsp; | &nbsp;
+            <span onClick={this.handleDeleteModal} className='deleteList'>Delete this list</span>
+          </div> : '')}
           <hr />
         <div>
           <h2>You haven't added any beers yet!</h2>
@@ -50,6 +53,16 @@ class BeerContainer extends Component {
             hideModal={this.handleDeleteModal}
             listName={this.props.listName}
             reload={this.props.reload}
+          />
+          <EditListModal
+            show={this.state.showEditListModal}
+            hideModal={this.handleEditModal}
+            reload={this.props.reload}
+            allBeers={this.props.allBeers}
+            listName={this.props.listName}
+            listId={this.props.listId}
+            listBeers={this.props.beersArray}
+            updateListId={this.props.updateListId}
           />
       </div>
       )

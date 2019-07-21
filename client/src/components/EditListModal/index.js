@@ -40,14 +40,14 @@ class EditListModal extends Component {
   handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    await axios.put('/api/lists/' + this.props.listId, {
-      name: this.state.listName,
-      beers: this.state.beers
-    })
+      await axios.put('/api/lists/' + this.props.listId, {
+        name: this.state.listName,
+        beers: this.state.beers
+      })
 
-    await this.props.updateListId('');
-    await this.props.hideModal();
-    await this.props.reload();
+      await this.props.updateListId('');
+      await this.props.hideModal();
+      await this.props.reload();
   }
 
   render() {
@@ -59,7 +59,7 @@ class EditListModal extends Component {
         <Form>
           <Form.Group>
             <Form.Label>List name: </Form.Label>
-            <Form.Control type='text' size='sm' name='listName' onChange={this.handleInputChange} value={this.state.listName}></Form.Control>
+            <Form.Control required type='text' size='sm' name='listName' onChange={this.handleInputChange} value={this.state.listName} ref={this.inputListName}></Form.Control>
           </Form.Group>
           <Form.Group>
             <Form.Label>Select beers to add to this list: </Form.Label>
@@ -78,7 +78,7 @@ class EditListModal extends Component {
             </Form.Control>
           </Form.Group>
           <hr />
-          <Button className='submitButton' onClick={this.handleFormSubmit}>
+          <Button type='submit' className='submitButton' onClick={this.handleFormSubmit}>
             Save Changes
           </Button>
         </Form>

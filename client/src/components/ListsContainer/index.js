@@ -4,7 +4,7 @@ import './style.css';
 
 class ListsContainer extends Component {
 
-  updateListId = async (event) => {
+  updateList = async (event) => {
     const list_id = await event.target.getAttribute('list_id');
 
     await this.props.updateListId(list_id);
@@ -36,7 +36,7 @@ class ListsContainer extends Component {
                 <li
                   key={list._id}
                   list_id={list._id}
-                  onClick={this.updateListId}
+                  onClick={this.updateList}
                   className='listElement'
                 >
                   {list.name} ({list.beers.length})
