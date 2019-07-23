@@ -25,7 +25,9 @@ class NewListModal extends Component {
     })
   }
 
-  handleFormSubmit = async () => {
+  handleFormSubmit = async (event) => {
+    event.preventDefault();
+    
     await axios.post('/api/lists', {
       name: this.state.listName,
       user: this.props.userId,

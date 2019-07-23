@@ -44,7 +44,8 @@ class AddModal extends Component {
   }
 
   handleFormSubmit = async (event) => {
-
+    event.preventDefault();
+    
     let addedRes = await axios.post('/api/beers', {
       user: this.props.userId,
       lists: this.state.lists,
