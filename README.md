@@ -19,6 +19,8 @@
  - Deployed with Heroku
 
  ## Screenshots and GIFs
+ ![Pourscore Dashboard](./github-images/pourscore.png)
+
  ![Adding a beer with Pourscore](./github-images/addbeer.gif)
  
  ![Creating a list with Pourscore](./github-images/addlist.gif)
