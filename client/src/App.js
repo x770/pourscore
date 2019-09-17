@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from './context/context.js';
 import './App.css';
 import Nav from './components/Nav';
 import Welcome from './pages/Welcome';
@@ -12,8 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     const authStatus = JSON.parse(localStorage.getItem('isAuth'));
-    const currentUser = localStorage.getItem('currentUser');
-    const user_id = localStorage.getItem('user_id');
+    const currentUser = 'admin';
+    const user_id = 'admin';
 
     this.state = {
       currentUser: currentUser,
@@ -27,8 +29,8 @@ class App extends Component {
 
   componentDidMount() {
     const isAuth = JSON.parse(localStorage.getItem('isAuth'));
-    const currentUser = localStorage.getItem('currentUser');
-    const user_id = localStorage.getItem('user_id');
+    const currentUser = 'admin';
+    const user_id = 'admin';
 
     this.setState({
       isAuth: isAuth,
@@ -70,35 +72,37 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <Nav
-            isAuth={this.state.isAuth}
-            handleLoginModal={this.handleLoginModal.bind(this)}
-            handleSignupModal={this.handleSignupModal.bind(this)}
-            handleListsToggle={this.handleListsToggle.bind(this)}
-          />
-          <Switch>
-            <Route exact path='/'
-              render={(props) => <Welcome {...props} isAuth={this.state.isAuth} handleSignupModal={this.handleSignupModal.bind(this)} />} />
-            <Route
-              exact path='/dashboard'
-              render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} user_id={this.state.userId} showLists={this.state.showLists} handleListsToggle={this.handleListsToggle.bind(this)} {...props} />}
+      <Provider>
+        <Router>
+          <React.Fragment>
+            <Nav
+              isAuth={this.state.isAuth}
+              handleLoginModal={this.handleLoginModal.bind(this)}
+              handleSignupModal={this.handleSignupModal.bind(this)}
+              handleListsToggle={this.handleListsToggle.bind(this)}
             />
-            <Route path='*' component={NoMatch} />
-          </Switch>
-        </div>
-        <Login
-              show={this.state.showLogin}
-              hide={this.handleLoginModal.bind(this)}
+            <Switch>
+              <Route exact path='/'
+                render={(props) => <Welcome {...props} isAuth={this.state.isAuth} handleSignupModal={this.handleSignupModal.bind(this)} />} />
+              <Route
+                exact path='/dashboard'
+                render={(props) => <Dashboard currentUser={this.state.currentUser} isAuth={this.state.isAuth} user_id={this.state.userId} showLists={this.state.showLists} handleListsToggle={this.handleListsToggle.bind(this)} {...props} />}
+              />
+              <Route path='*' component={NoMatch} />
+            </Switch>
+          </React.Fragment>
+          <Login
+                show={this.state.showLogin}
+                hide={this.handleLoginModal.bind(this)}
+                updateUser={this.updateUser}
+              />
+            <Signup
+              show={this.state.showSignup}
+              hide={this.handleSignupModal.bind(this)}
               updateUser={this.updateUser}
             />
-          <Signup
-            show={this.state.showSignup}
-            hide={this.handleSignupModal.bind(this)}
-            updateUser={this.updateUser}
-          />
-      </Router>
+          </Router>
+        </Provider>
     );
   }
 }

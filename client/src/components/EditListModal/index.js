@@ -64,7 +64,7 @@ class EditListModal extends Component {
           <Form.Group>
             <Form.Label>Select beers to add to this list: </Form.Label>
             <Form.Control as='select' multiple value={this.state.beers} name='beers' onChange={this.handleSelectChange} style={{ height: '250px'}}>
-              {this.props.allBeers.map(
+              {/* {this.props.allBeers.map(
                 beer => (
                   <option
                     key={beer._id}
@@ -74,7 +74,7 @@ class EditListModal extends Component {
                     {beer.breweryName} {beer.beerName}
                   </option>
                 )
-              )}
+              )} */}
             </Form.Control>
           </Form.Group>
           <hr />

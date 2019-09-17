@@ -33,7 +33,7 @@ class ListsModal extends Component {
           </Button>
           <ul>
             <li list_id={''} onClick={this.resetListId} className='listElement'>All Beers</li>
-            {this.props.listsArray.map(
+            {/* {this.props.listsArray.map(
               list => (
                 <li
                   key={list._id}
@@ -44,7 +44,7 @@ class ListsModal extends Component {
                   {list.name} ({list.beers.length})
                 </li>
               )
-            )}
+            )} */}
           </ul>
         </div>
       </div>

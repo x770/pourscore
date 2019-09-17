@@ -23,12 +23,8 @@ class AddModal extends Component {
     })
   }
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+  
+  
 
   handleSelectChange = event => {
     let selectedOptions = [...event.target.options].filter(o => o.selected).map(o => o.value);
@@ -118,13 +114,13 @@ class AddModal extends Component {
           <Form.Group>
             <Form.Label>Add this beer to lists: </Form.Label>
             <Form.Control as='select' multiple name='lists' onChange={this.handleSelectChange}>
-              {this.props.allLists.map(
+              {/* {this.props.allLists.map(
                 list => (
                   <option key={list._id} value={list._id} onChange={this.handleSelectChange}>
                     {list.name}
                   </option>
                 )
-              )}
+              )} */}
             </Form.Control>
           </Form.Group>
           <hr />

@@ -51,13 +51,7 @@ class NewListModal extends Component {
           <Form.Group>
             <Form.Label>Select beers to add to this list: </Form.Label>
             <Form.Control as='select' multiple name='beers' onChange={this.handleSelectChange} style={{ height: '250px'}}>
-              {this.props.allBeers.map(
-                beer => (
-                  <option key={beer._id} value={beer._id} onChange={this.handleSelectChange}>
-                    {beer.breweryName} {beer.beerName}
-                  </option>
-                )
-              )}
+              
             </Form.Control>
           </Form.Group>
           <hr />

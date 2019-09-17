@@ -82,7 +82,7 @@ class BeerContainer extends Component {
           : '')}
         <hr />
         <div>
-          {this.props.beersArray.map(beerEntry => (
+          {/* {this.props.beersArray.map(beerEntry => (
             <BeerEntry
               key={beerEntry._id}
               entryId={beerEntry._id}
@@ -95,7 +95,7 @@ class BeerContainer extends Component {
               reload={this.props.reload}
               allLists={this.props.allLists}
             />
-          ))}
+          ))} */}
         </div>
         <DeleteListModal
           show={this.state.showDeleteListModal}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../context/context.js';
 import './style.css';
 
 class Nav extends Component {
@@ -40,23 +41,25 @@ class Nav extends Component {
   render() {
     if (this.props.isAuth === true) {
       return (
-        <nav>
-          <span className='listsToggle' onClick={this.props.handleListsToggle}>
-            &#9776;
-          </span>
-          <Link to='/' className='brand'>POURSCORE</Link>
-          <span className='navbarToggle' onClick={this.handleMenuToggle} >
-            <i className="fas fa-cog"></i>
-          </span>
-          <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
-            <li>
-              <Link to='/dashboard' className='navLink'>Dashboard</Link>
-            </li>
-            <li>
-              <span className='navLink' onClick={this.logOut}>Log Out</span>
-            </li>
-          </ul>
-        </nav>
+        <Context.Consumer>
+          <nav>
+            <span className='listsToggle' onClick={this.props.handleListsToggle}>
+              &#9776;
+            </span>
+            <Link to='/' className='brand'>POURSCORE</Link>
+            <span className='navbarToggle' onClick={this.handleMenuToggle} >
+              <i className="fas fa-cog"></i>
+            </span>
+            <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+              <li>
+                <Link to='/dashboard' className='navLink'>Dashboard</Link>
+              </li>
+              <li>
+                <span className='navLink' onClick={this.logOut}>Log Out</span>
+              </li>
+            </ul>
+            </nav>
+          </Context.Consumer>
       )
     } else {
       return (
