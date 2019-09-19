@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Context } from '../context/context.js';
+import { Context } from '../context/appContext.js';
 import { Redirect } from 'react-router-dom';
 import Container from '../components/Container';
 import BeerContainer from '../components/BeerContainer';
 import ListsContainer from '../components/ListsContainer';
 import AddModal from '../components/AddModal';
-import ListsModal from '../components/ListsModal';
 import NewListModal from '../components/NewListModal';
 import axios from 'axios';
 import './dashboard.css';
@@ -97,13 +96,7 @@ class Dashboard extends Component {
 				{context => (
 					<Container>
 						<div className="welcomeMessage">
-							<h1>
-								Welcome to your dashboard,{' '}
-								<span style={{ fontWeight: 'bold' }}>
-									{context.state.testKey}
-								</span>
-								!
-							</h1>
+							<h1>Welcome to your dashboard, {context.state.currentUser}!</h1>
 							<h3>
 								You've added {context.state.beersAdded} beers to Pourscore. How
 								about{' '}
@@ -118,7 +111,7 @@ class Dashboard extends Component {
 							<AddModal
 								show={this.state.showAddModal}
 								hideModal={this.handleAddModal.bind(this)}
-								username={this.props.currentUser}
+								username={context.state.currentUser}
 								userId={this.props.user_id}
 								reload={this.componentDidMount.bind(this)}
 								allLists={this.state.allLists}
@@ -133,17 +126,6 @@ class Dashboard extends Component {
 								reload={this.componentDidMount.bind(this)}
 							/>
 						</div>
-						<ListsModal
-							showLists={this.props.showLists}
-							handleListsToggle={this.props.handleListsToggle}
-							lists={this.props.lists}
-							listsArray={this.state.allLists}
-							list_id={this.state.listId}
-							handleNewListModal={this.handleNewListModal.bind(this)}
-							updateListId={this.updateListId.bind(this)}
-							fetchAllBeers={this.fetchAllBeers.bind(this)}
-							fetchListBeers={this.fetchListBeers.bind(this)}
-						/>
 						<div className="gridContainer">
 							<ListsContainer
 								listsArray={this.state.allLists}

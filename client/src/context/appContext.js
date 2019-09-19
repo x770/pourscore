@@ -7,14 +7,10 @@ const Context = React.createContext();
 class Provider extends Component {
 
   state = {
-    currentUser: '',
-    isAuth: false,
-    userId: '',
-    showLogin: false,
-    showSignup: false,
-    showLists: false,
-    testKey: 'testValue',
-    beersAdded: 21
+    currentUser: 'admin',
+    isAuth: true,
+    userId: 'admin',
+    showLists: false
   }
 
   render() {

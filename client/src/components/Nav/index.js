@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context/context.js';
+import { Context } from '../../context/appContext.js';
+import ListsModal from '../../components/ListsModal';
 import './style.css';
 
 class Nav extends Component {
   state = {
-		showLogin: false,
-    showSignup: false,
     showMenu: false,
     showLists: false
-  }
-
-	handleLoginModal = () => {
-		if (this.state.showLogin === false) {
-			this.setState({ showLogin: true })
-		} else {
-			this.setState({ showLogin: false })
-		}
-  }
-  
-  handleSignupModal = () => {
-		if (this.state.showSignup === false) {
-			this.setState({ showSignup: true })
-		} else {
-			this.setState({ showSignup: false })
-		}
   }
 
   handleMenuToggle = () => {
@@ -33,54 +16,65 @@ class Nav extends Component {
     })
   }
 
+  handleListsToggle = () => {
+    this.setState({
+      showLists: !this.state.showLists
+    });
+  }
+
   logOut = () => {
     localStorage.clear();
     window.location.replace('/');
   }
 
   render() {
-    if (this.props.isAuth === true) {
-      return (
-        <Context.Consumer>
-          <nav>
-            <span className='listsToggle' onClick={this.props.handleListsToggle}>
-              &#9776;
-            </span>
-            <Link to='/' className='brand'>POURSCORE</Link>
-            <span className='navbarToggle' onClick={this.handleMenuToggle} >
-              <i className="fas fa-cog"></i>
-            </span>
-            <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
-              <li>
-                <Link to='/dashboard' className='navLink'>Dashboard</Link>
-              </li>
-              <li>
-                <span className='navLink' onClick={this.logOut}>Log Out</span>
-              </li>
-            </ul>
-            </nav>
-          </Context.Consumer>
-      )
-    } else {
-      return (
-        <nav>
-          <Link to='/' className='brand'>POURSCORE</Link>
-          <span className='navbarToggle' onClick={this.handleMenuToggle} >
-            <i className="fas fa-bars"></i>
-          </span>
-          <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
-            <li>
-              <span className='navLink' onClick={this.props.handleLoginModal}>Log in</span>
-            </li>
-            <li>
-              <span className='navLink' onClick={this.props.handleSignupModal}>Sign Up</span>
-            </li>
-          </ul>
-        </nav>
-      )
-    }
-
+    return (
+      <Context.Consumer>
+        {(context) => {
+          if (context.state.isAuth === true) {
+            return (
+              <React.Fragment>
+                <nav>
+                  <span className='listsToggle' onClick={this.handleListsToggle}>
+                    &#9776;
+                  </span>
+                  <Link to='/' className='brand'>POURSCORE</Link>
+                  <span className='navbarToggle' onClick={this.handleMenuToggle} >
+                    <i className="fas fa-cog"></i>
+                  </span>
+                  <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+                    <li>
+                      <Link to='/dashboard' className='navLink'>Dashboard</Link>
+                    </li>
+                    <li>
+                      <span className='navLink' onClick={this.logOut}>Log Out</span>
+                    </li>
+                  </ul>
+                </nav>
+                <ListsModal showLists={this.state.showLists} toggleLists={this.handleListsToggle.bind(this)} />
+              </React.Fragment>
+            )
+          } else {
+              return (
+                <nav>
+                  <Link to='/' className='brand'>POURSCORE</Link>
+                  <span className='navbarToggle' onClick={this.handleMenuToggle} >
+                    <i className="fas fa-bars"></i>
+                  </span>
+                  <ul className={this.state.showMenu ? 'mainNav show' : 'mainNav hide'}>
+                    <li>
+                      <Link to='/login' className='navLink'>Log in</Link>
+                    </li>
+                    <li>
+                      <Link to='/signup' className='navLink'>Sign Up</Link>
+                    </li>
+                  </ul>
+                </nav>
+              ) 
+            }
+        }}
+      </Context.Consumer>
+    )} 
   }
-}
 
 export default Nav;

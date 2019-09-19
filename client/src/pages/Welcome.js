@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Context } from '../context/appContext.js';
 import Hero from '../components/Hero';
 
 class Welcome extends Component {
 
 	render() {
-		if (this.props.isAuth === true) {
-			return <Redirect to='/dashboard' />
-		}
 		return (
-			<Hero handleSignupModal={this.props.handleSignupModal.bind(this)} />
+			<Context.Consumer>
+				{(context) => {
+					if (context.state.isAuth === true) {
+						return <Redirect to='/dashboard' />
+					} else {
+						return <Hero />
+					}
+				}}
+			</Context.Consumer>
 		)
 	}
 }

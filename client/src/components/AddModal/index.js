@@ -77,6 +77,7 @@ class AddModal extends Component {
         </Modal.Header>
         <Form>
           <span>Fields marked with an (*) are required. </span>
+          <span>Username: </span>
           <br /> <br />
           <Form.Group>
             <Form.Label>Beer name:* </Form.Label>
