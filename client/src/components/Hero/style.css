@@ -1,8 +1,7 @@
 .heroContainer {
-  width: 100vw;
-  height: 100vh;
-  padding-top: 25vh;
-  color: white;
+  max-width: 75vw;
+  padding-top: 20vh;
+  margin: 0 auto;
 }
 
 .button {
@@ -15,28 +14,24 @@
 .button:hover, .button:active {
   background-color: #F7CB14;
   color: black;
-  filter: brightness(103%);
+  filter: brightness(97%);
 }
 
 h1 {
-  font-size: calc(1.75em + 1vw);
+  font-size: calc(2em + 1vw);
   margin-bottom: 18px;
   line-height: 1;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 p {
   font-size: calc(1em + 0.75vmin);
   line-height: 1.5;
-  width: 80%;
+  width: 75%;
+  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 768px) { 
-  .heroContainer {
-    padding-top: 20vh;
-  }
-  
   p {
     width: 100%;
   }

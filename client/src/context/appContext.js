@@ -8,7 +8,7 @@ class Provider extends Component {
 
   state = {
     currentUser: 'admin',
-    isAuth: true,
+    isAuth: false,
     userId: 'admin',
     showLists: false
   }

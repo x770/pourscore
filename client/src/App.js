@@ -1,13 +1,23 @@
+// React import
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from './context/appContext.js';
+
+// CSS import
 import './App.css';
-import Nav from './components/Nav';
-import Welcome from './pages/Welcome';
-import Dashboard from './pages/Dashboard';
-import LogIn from './pages/LogIn';
-import NoMatch from './pages/NoMatch';
-import SignUp from './pages/SignUp';
+
+// App pages import
+import Welcome from './pages/Welcome/';
+import Dashboard from './pages/Dashboard/';
+import LogIn from './pages/LogIn/';
+import NoMatch from './pages/NoMatch/';
+import SignUp from './pages/SignUp/';
+
+// FontAwesome Import
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faBars)
 
 class App extends Component {
   constructor(props) {
@@ -51,16 +61,13 @@ class App extends Component {
     return (
       <Provider>
         <Router>
-          <React.Fragment>
-            <Nav />
-            <Switch>
-              <Route exact path='/' component={Welcome} />
-              <Route exact path='/dashboard' component={Dashboard} />
-              <Route exact path='/signup' component={SignUp} />
-              <Route exact path='/login' component={LogIn} />
-              <Route path='*' component={NoMatch} />
-            </Switch>
-          </React.Fragment>
+          <Switch>
+            <Route exact path='/' component={Welcome} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/login' component={LogIn} />
+            <Route path='*' component={NoMatch} />
+          </Switch>
         </Router>
       </Provider>
     );

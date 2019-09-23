@@ -55,3 +55,7 @@ table {
   color: black;
   filter: brightness(90%);
 }
+
+.center {
+	text-align: center;
+}

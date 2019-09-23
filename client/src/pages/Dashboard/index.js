@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Context } from '../context/appContext.js';
+import { Context } from '../../context/appContext.js';
 import { Redirect } from 'react-router-dom';
-import Container from '../components/Container';
-import BeerContainer from '../components/BeerContainer';
-import ListsContainer from '../components/ListsContainer';
-import AddModal from '../components/AddModal';
-import NewListModal from '../components/NewListModal';
+import { AddModal, BeerContainer, ListsContainer, NewListModal } from '../../components';
 import axios from 'axios';
-import './dashboard.css';
+import './style.css';
 
 class Dashboard extends Component {
 	state = {
@@ -93,8 +89,10 @@ class Dashboard extends Component {
 	render() {
 		return (
 			<Context.Consumer>
-				{context => (
-					<Container>
+				{context => {
+					if (context.state.isAuth === true) {
+						return (
+						<div>
 						<div className="welcomeMessage">
 							<h1>Welcome to your dashboard, {context.state.currentUser}!</h1>
 							<h3>
@@ -148,8 +146,12 @@ class Dashboard extends Component {
 								allLists={this.state.allLists}
 							/>
 						</div>
-					</Container>
-				)}
+					</div>
+						)} else {
+						return <Redirect to='/login' />
+					}
+					
+				}}
 			</Context.Consumer>
 		);
 	}

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Container, Hero, Nav, WelcomeCard } from '../../components';
 
 class LogIn extends Component {
 
   render() {
     return (
       <React.Fragment>
-        <h1>This is the log in page.</h1>
+        <Nav />
+        <h1 className='center'>Log In</h1>
       </React.Fragment>
     )
   }

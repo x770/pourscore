@@ -1,0 +1,35 @@
+.sideNav {
+  background-color: white;
+  opacity: 0;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 30px;
+  text-align: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
+  transition: 0.5s ease-out;
+}
+
+.open {
+  width: 300px;
+  opacity: 1;
+}
+
+.listsModal {
+  padding: 20px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
