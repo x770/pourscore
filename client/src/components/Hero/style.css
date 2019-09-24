@@ -4,27 +4,7 @@
   margin: 0 auto;
 }
 
-.button {
-  background-color: #F7CB14;
-  color: black;
-  font-weight: bold;
-  border: none;
-}
-
-.button:hover, .button:active {
-  background-color: #F7CB14;
-  color: black;
-  filter: brightness(97%);
-}
-
-h1 {
-  font-size: calc(2em + 1vw);
-  margin-bottom: 18px;
-  line-height: 1;
-  font-weight: bold;
-}
-
-p {
+.heroContainer > p {
   font-size: calc(1em + 0.75vmin);
   line-height: 1.5;
   width: 75%;
@@ -32,7 +12,7 @@ p {
 }
 
 @media screen and (max-width: 768px) { 
-  p {
+  .heroContainer > p {
     width: 100%;
   }
 }

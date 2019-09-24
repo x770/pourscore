@@ -8,6 +8,7 @@ import EditBeerModal from './EditBeerModal';
 import Hero from './Hero';
 import ListsContainer from './ListsContainer';
 import ListsModal from './ListsModal';
+import LoginForm from './LoginForm';
 import Nav from './Nav';
 import NewListModal from './NewListModal';
 import SidebarMenu from './SidebarMenu';
@@ -24,6 +25,7 @@ export {
   Hero,
   ListsContainer,
   ListsModal,
+  LoginForm,
   Nav,
   NewListModal,
   SidebarMenu,

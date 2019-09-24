@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 
-class SignUpForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      confirmPassword: '',
       validForm: false
     }
 
@@ -56,24 +55,15 @@ class SignUpForm extends Component {
             onChange={this.handleInputChange}
           />
         </label>
-        <label>
-          Confirm Password <br />
-          <input
-            name='confirmPassword'
-            type='password'
-            value={this.state.confirmPassword}
-            onChange={this.handleInputChange}
-          />
-        </label>
         <button
           className='button'
           disabled={!this.state.validForm}
         >
-          Sign Up
+          Log In
         </button>
       </form>
     );
   }
 }
 
-export default SignUpForm;
+export default LoginForm;

@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1.5;
 	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
 }
 ol, ul {
 	list-style: none;
@@ -43,6 +44,26 @@ table {
 	border-spacing: 0;
 }
 
+/* Custom CSS */
+
+/* Text Styles */
+
+h1 {
+	font-size: calc(2em + 1vw);
+  margin-bottom: 18px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.center {
+	text-align: center;
+}
+
+.md-text {
+	font-size: 14px;
+}
+
+/* Buttons */
 .button {
   background-color: #F7CB14;
   color: black;
@@ -54,8 +75,4 @@ table {
   background-color: #F7CB14;
   color: black;
   filter: brightness(90%);
-}
-
-.center {
-	text-align: center;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Container, Hero, Nav, WelcomeCard } from '../../components';
+import './style.css';
+import { Link, Redirect } from 'react-router-dom';
+import { LoginForm, Nav } from '../../components';
 
 class LogIn extends Component {
 
@@ -8,7 +9,11 @@ class LogIn extends Component {
     return (
       <React.Fragment>
         <Nav />
-        <h1 className='center'>Log In</h1>
+        <div className='formContainer'>
+          <h1 className='center'>Log In</h1>
+          <LoginForm />
+          <p className='center md-text'>Don't have an account? <Link to='/signup'>Sign Up.</Link></p>
+        </div>
       </React.Fragment>
     )
   }
