@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withContext } from '../../context/appContext.js';
 import BeerEntry from '../BeerEntry';
 import DeleteListModal from '../DeleteListModal';
 import EditListModal from '../EditListModal';
@@ -34,7 +35,7 @@ class BeerContainer extends Component {
 
   render() {
     // If the beers array is empty, display a message
-    if (this.props.beersArray.length === 0) {
+    if (this.props.state.beers.length === 0) {
       return (
         <div className='beerContainer'>
           <h2 className='listTitle'>{this.props.listName}</h2>
@@ -82,12 +83,12 @@ class BeerContainer extends Component {
           : '')}
         <hr />
         <div>
-          {/* {this.props.beersArray.map(beerEntry => (
+          {this.props.state.beers.map(beerEntry => (
             <BeerEntry
               key={beerEntry._id}
               entryId={beerEntry._id}
-              beerName={beerEntry.beerName}
-              breweryName={beerEntry.breweryName}
+              beerName={beerEntry.name}
+              breweryName={beerEntry.brewery}
               beerRating={beerEntry.beerRating}
               beerNotes={beerEntry.beerNotes}
               dateAdded={beerEntry.date}
@@ -95,7 +96,7 @@ class BeerContainer extends Component {
               reload={this.props.reload}
               allLists={this.props.allLists}
             />
-          ))} */}
+          ))}
         </div>
         <DeleteListModal
           show={this.state.showDeleteListModal}
@@ -120,4 +121,4 @@ class BeerContainer extends Component {
   }
 }
 
-export default BeerContainer;
+export default withContext(BeerContainer);

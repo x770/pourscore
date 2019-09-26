@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Context } from '../../context/appContext.js';
-import { Redirect } from 'react-router-dom';
+import { withContext } from '../../context/appContext.js';
 import { AddModal, BeerContainer, ListsContainer, NewListModal } from '../../components';
 import axios from 'axios';
 import './style.css';
@@ -18,6 +17,7 @@ class Dashboard extends Component {
 	};
 
 	componentDidMount = () => {
+		console.log(this.props.state.beers.length);
 		this.fetchAllBeers();
 		this.fetchAllLists();
 	};
@@ -88,73 +88,63 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<Context.Consumer>
-				{context => {
-					if (context.state.isAuth === true) {
-						return (
-						<div>
-						<div className="welcomeMessage">
-							<h1>Welcome to your dashboard, {context.state.currentUser}!</h1>
-							<h3>
-								You've added {context.state.beersAdded} beers to Pourscore. How
-								about{' '}
-								<span className="addBeerPrompt" onClick={this.handleAddModal}>
-									adding a new beer
-								</span>
-								?
-							</h3>
-							<br />
-						</div>
-						<div>
-							<AddModal
-								show={this.state.showAddModal}
-								hideModal={this.handleAddModal.bind(this)}
-								username={context.state.currentUser}
-								userId={this.props.user_id}
-								reload={this.componentDidMount.bind(this)}
-								allLists={this.state.allLists}
-							/>
-						</div>
-						<div>
-							<NewListModal
-								show={this.state.showNewListModal}
-								hideModal={this.handleNewListModal.bind(this)}
-								userId={this.props.user_id}
-								allBeers={this.state.allBeers}
-								reload={this.componentDidMount.bind(this)}
-							/>
-						</div>
-						<div className="gridContainer">
-							<ListsContainer
-								listsArray={this.state.allLists}
-								list_id={this.state.listId}
-								listName={this.state.listName}
-								handleNewListModal={this.handleNewListModal.bind(this)}
-								updateListId={this.updateListId.bind(this)}
-								fetchAllBeers={this.fetchAllBeers.bind(this)}
-								fetchListBeers={this.fetchListBeers.bind(this)}
-							/>
-							<BeerContainer
-								allBeers={this.state.allBeers}
-								beersArray={this.state.beersArray}
-								fetchBeers={this.fetchAllBeers.bind(this)}
-								fetchListBeers={this.fetchListBeers.bind(this)}
-								updateListId={this.updateListId.bind(this)}
-								listId={this.state.listId}
-								listName={this.state.listName}
-								reload={this.componentDidMount.bind(this)}
-								allLists={this.state.allLists}
-							/>
-						</div>
-					</div>
-						)} else {
-						return <Redirect to='/login' />
-					}
-					
-				}}
-			</Context.Consumer>
+			<React.Fragment>
+				<div className="welcomeMessage">
+					<h1>Welcome to your dashboard, {this.props.state.user.username}!</h1>
+					<h3>
+						You've added {this.props.state.beers.length} beers to Pourscore. How
+						about{' '}
+						<span className="addBeerPrompt" onClick={this.handleAddModal}>
+							adding a new beer
+						</span>
+						?
+					</h3>
+					<br />
+					<button onClick={this.props.logout}>Log Out</button>
+				</div>
+				<div>
+					<AddModal
+						show={this.state.showAddModal}
+						hideModal={this.handleAddModal.bind(this)}
+						userId={this.props.user_id}
+						reload={this.componentDidMount.bind(this)}
+						allLists={this.state.allLists}
+					/>
+				</div>
+				<div>
+					<NewListModal
+						show={this.state.showNewListModal}
+						hideModal={this.handleNewListModal.bind(this)}
+						userId={this.props.user_id}
+						allBeers={this.state.allBeers}
+						reload={this.componentDidMount.bind(this)}
+					/>
+				</div>
+				<div className="gridContainer">
+					<ListsContainer
+						listsArray={this.state.allLists}
+						list_id={this.state.listId}
+						listName={this.state.listName}
+						handleNewListModal={this.handleNewListModal.bind(this)}
+						updateListId={this.updateListId.bind(this)}
+						fetchAllBeers={this.fetchAllBeers.bind(this)}
+						fetchListBeers={this.fetchListBeers.bind(this)}
+					/>
+					<BeerContainer
+						allBeers={this.state.allBeers}
+						beersArray={this.state.beersArray}
+						fetchBeers={this.fetchAllBeers.bind(this)}
+						fetchListBeers={this.fetchListBeers.bind(this)}
+						updateListId={this.updateListId.bind(this)}
+						listId={this.state.listId}
+						listName={this.state.listName}
+						reload={this.componentDidMount.bind(this)}
+						allLists={this.state.allLists}
+					/>
+				</div>
+			</React.Fragment>
 		);
 	}
 }
 
-export default Dashboard;
+export default withContext(Dashboard);

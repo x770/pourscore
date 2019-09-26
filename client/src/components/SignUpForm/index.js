@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withContext } from '../../context/appContext';
+import { withRouter } from 'react-router-dom';
 import './style.css';
 
 class SignUpForm extends Component {
@@ -9,30 +10,23 @@ class SignUpForm extends Component {
       username: '',
       password: '',
       confirmPassword: '',
-      validForm: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const { name, value } = event.target;
 
     this.setState({
       [name]: value
     })
   }
 
-  validateForm = () => {
-     
-  }
-
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-
-    alert('Success!')
+    this.props.signup(this.state)
+      .then(() => this.props.history.push('/dashboard'));
   }
 
   render() {
@@ -67,7 +61,6 @@ class SignUpForm extends Component {
         </label>
         <button
           className='button'
-          disabled={!this.state.validForm}
         >
           Sign Up
         </button>
@@ -76,4 +69,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default withRouter(withContext(SignUpForm));

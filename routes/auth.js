@@ -33,10 +33,10 @@ authRouter.post('/signup', (req, res, next) => {
       }
 
       // Assign token to user so an auto log in occurs
-      const token = jwt.sign(user.toObject(), process.env.SECRET);
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
       return res.status(201).send({
         success: true,
-        user: user.toObject(),
+        user: user.withoutPassword(),
         token
       });
     });
@@ -48,19 +48,25 @@ authRouter.post('/login', (req, res, next) => {
   // Checking for user in the database
   User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
     if (err) {
+      res.status(500);
       return next(err);
-    };
-
-    // Check if username and password combo matches the database; throw error if not
-    if (!user || user.password !== req.body.password) {
+    } else if (!user) {
       res.status(403);
-      return next(new Error('Username or password is incorrect!'));
+      return next(new Error('Username or password are incorrect!'))
     }
 
-    // Assign a JWT to the user and return successfully
-    const token = jwt.sign(user.toObject(), process.env.SECRET);
+    user.checkPassword(req.body.password, (err, match) => {
+      if (err) return res.status(500).send(err);
+      if (!match) return res.status(401).send({ message: 'Username or password is incorrect!' })
+      
+      const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
 
-    return res.send({ token: token, user: user.toObject(), success: true })
+      return res.send({
+        user: user.withoutPassword(),
+        token
+      })
+
+    });
   });
 });
 

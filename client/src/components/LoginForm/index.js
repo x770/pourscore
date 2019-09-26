@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withContext } from '../../context/appContext';
+import { withRouter } from 'react-router-dom';
 import './style.css';
 
 class LoginForm extends Component {
@@ -24,14 +25,11 @@ class LoginForm extends Component {
     })
   }
 
-  validateForm = () => {
-     
-  }
-
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    alert('Success!')
+    this.props.login(this.state)
+      .then(() => this.props.history.push('/dashboard'))
   }
 
   render() {
@@ -57,7 +55,6 @@ class LoginForm extends Component {
         </label>
         <button
           className='button'
-          disabled={!this.state.validForm}
         >
           Log In
         </button>
@@ -66,4 +63,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(withContext(LoginForm));
