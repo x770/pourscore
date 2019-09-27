@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
-import { Link, Redirect } from 'react-router-dom';
-import { Container, Nav, SignUpForm } from '../../components';
+import { Link } from 'react-router-dom';
+import { Nav, SignUpForm } from '../../components';
 
 class SignUp extends Component {
 

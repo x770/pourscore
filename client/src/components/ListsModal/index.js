@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Context } from '../../context/appContext.js'; 
+import { withContext } from '../../context/appContext.js';
 import { Button } from 'react-bootstrap';
 import './style.css';
 
@@ -20,7 +20,7 @@ class ListsModal extends Component {
 
   render() {
     return (
-      <Context.Consumer>
+      <div>
         {(context) => (
           <div className={this.props.showLists ? 'sidebar open' : 'sidebar'}>
           <div className={'listsModal'}>
@@ -52,9 +52,9 @@ class ListsModal extends Component {
           </div>
         </div>
         )}
-      </Context.Consumer>
+      </div>
     )
   }
 }
 
-export default ListsModal;
+export default withContext(ListsModal);

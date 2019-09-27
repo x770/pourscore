@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LoginForm, Nav } from '../../components';
 
 class LogIn extends Component {

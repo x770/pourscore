@@ -9,6 +9,7 @@ import './App.css';
 // App pages import
 import Welcome from './pages/Welcome/';
 import Dashboard from './pages/Dashboard/';
+import LoggedOut from './pages/LoggedOut/';
 import LogIn from './pages/LogIn/';
 import NoMatch from './pages/NoMatch/';
 import SignUp from './pages/SignUp/';
@@ -66,6 +67,7 @@ class App extends Component {
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={LogIn} />
+            <Route exact path='/logout' component={LoggedOut} />
             <Route path='*' component={NoMatch} />
           </Switch>
         </Router>

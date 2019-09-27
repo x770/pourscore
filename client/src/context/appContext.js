@@ -24,7 +24,9 @@ class Provider extends Component {
   }
 
   componentDidMount = () => {
-    this.getBeers();
+    if (this.state.token) {
+      this.getBeers();
+    }
   }
 
   getBeers = () => {

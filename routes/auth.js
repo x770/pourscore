@@ -7,21 +7,12 @@ const jwt = require("jsonwebtoken");
 authRouter.post('/signup', (req, res, next) => {
   // Checking if the username already exists in the database
   User.findOne({ username: req.body.username }, (err, existingUser) => {
-  
     if (err) {
-      return (
-        res
-          .status(500)
-          .send({ success: false, err })
-      )
-    }
-    
-    if (existingUser !== null) {
-      return (
-        res
-          .status(400)
-          .send({ success: false, err: "That username already exists!" })
-      )
+      res.status(500);
+      return next(err);
+    } else if (existingUser !== null) {
+        res.status(400).send({error: 'That username already exists!'})
+        return next(err);
     }
 
     // Create a new user

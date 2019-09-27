@@ -35,7 +35,7 @@ class BeerContainer extends Component {
 
   render() {
     // If the beers array is empty, display a message
-    if (this.props.state.beers.length === 0) {
+    if (this.props.beers === 0) {
       return (
         <div className='beerContainer'>
           <h2 className='listTitle'>{this.props.listName}</h2>

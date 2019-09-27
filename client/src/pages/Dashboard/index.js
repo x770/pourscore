@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { withContext } from '../../context/appContext.js';
-import { AddModal, BeerContainer, ListsContainer, NewListModal } from '../../components';
+import { BeerContainer, ListsContainer } from '../../components';
 import axios from 'axios';
 import './style.css';
 
 class Dashboard extends Component {
-	state = {
-		showAddModal: false,
-		showNewListModal: false,
-		allBeers: [],
-		listId: '',
-		listName: 'All Beers',
-		totalBeers: '',
-		beersArray: [],
-		allLists: []
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			showAddModal: false,
+			showNewListModal: false,
+			allBeers: [],
+			listId: '',
+			listName: 'All Beers',
+			totalBeers: '',
+			beersArray: [],
+			allLists: []
+		};
+	}
+	
 
 	componentDidMount = () => {
-		console.log(this.props.state.beers.length);
-		this.fetchAllBeers();
-		this.fetchAllLists();
+		// this.fetchAllBeers();
+		// this.fetchAllLists();
 	};
+
+	handleLogout = () => {
+		this.props.logout();
+		this.props.history.push('/logout');
+	}
 
 	handleAddModal = () => {
 		this.setState({ showAddModal: !this.state.showAddModal });
@@ -91,34 +100,8 @@ class Dashboard extends Component {
 			<React.Fragment>
 				<div className="welcomeMessage">
 					<h1>Welcome to your dashboard, {this.props.state.user.username}!</h1>
-					<h3>
-						You've added {this.props.state.beers.length} beers to Pourscore. How
-						about{' '}
-						<span className="addBeerPrompt" onClick={this.handleAddModal}>
-							adding a new beer
-						</span>
-						?
-					</h3>
 					<br />
-					<button onClick={this.props.logout}>Log Out</button>
-				</div>
-				<div>
-					<AddModal
-						show={this.state.showAddModal}
-						hideModal={this.handleAddModal.bind(this)}
-						userId={this.props.user_id}
-						reload={this.componentDidMount.bind(this)}
-						allLists={this.state.allLists}
-					/>
-				</div>
-				<div>
-					<NewListModal
-						show={this.state.showNewListModal}
-						hideModal={this.handleNewListModal.bind(this)}
-						userId={this.props.user_id}
-						allBeers={this.state.allBeers}
-						reload={this.componentDidMount.bind(this)}
-					/>
+					<button onClick={this.handleLogout}>Log Out</button>
 				</div>
 				<div className="gridContainer">
 					<ListsContainer
@@ -131,6 +114,7 @@ class Dashboard extends Component {
 						fetchListBeers={this.fetchListBeers.bind(this)}
 					/>
 					<BeerContainer
+						beers={0}
 						allBeers={this.state.allBeers}
 						beersArray={this.state.beersArray}
 						fetchBeers={this.fetchAllBeers.bind(this)}
@@ -147,4 +131,4 @@ class Dashboard extends Component {
 	}
 }
 
-export default withContext(Dashboard);
+export default withRouter(withContext(Dashboard));
