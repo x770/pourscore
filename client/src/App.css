@@ -66,13 +66,32 @@ h1 {
 /* Buttons */
 .button {
   background-color: #F7CB14;
-  color: black;
+	color: black;
+	font-family: inherit;
   font-weight: bold;
-  border: none;
+	border: none;
 }
 
 .button:hover, .button:active {
+	cursor: pointer;
   background-color: #F7CB14;
   color: black;
   filter: brightness(90%);
+}
+
+.button-form {
+	display: block;
+	margin: 0 auto;
+	padding: 0.5em 1em;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: 0.3rem;
+	width: 100%;
+}
+
+.button-lg {
+	padding: 0.5em 1em;
+	font-size: 1.25rem;
+	line-height: 1.5;
+	border-radius: 0.3em;
 }

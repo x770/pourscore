@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withContext } from '../../context/appContext';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { LoginForm, Nav } from '../../components';
@@ -19,4 +20,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withContext(LogIn);

@@ -53,9 +53,7 @@ class LoginForm extends Component {
             onChange={this.handleInputChange}
           />
         </label>
-        <button
-          className='button'
-        >
+        <button className='button button-form'>
           Log In
         </button>
       </form>

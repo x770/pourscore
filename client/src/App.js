@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from './context/appContext.js';
+import ProtectedRoute from './components/ProtectedRoute';
+import AuthRedirect from './components/AuthRedirect';
 
 // CSS import
 import './App.css';
@@ -63,10 +65,10 @@ class App extends Component {
       <Provider>
         <Router>
           <Switch>
-            <Route exact path='/' component={Welcome} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/login' component={LogIn} />
+            <AuthRedirect exact path='/' component={Welcome} />
+            <ProtectedRoute exact path='/dashboard' component={Dashboard} />
+            <AuthRedirect exact path='/signup' component={SignUp} />
+            <AuthRedirect exact path='/login' component={LogIn} />
             <Route exact path='/logout' component={LoggedOut} />
             <Route path='*' component={NoMatch} />
           </Switch>

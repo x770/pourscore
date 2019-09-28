@@ -80,7 +80,7 @@ class SignUpForm extends Component {
             />
           </label>
           <button
-            className='button'
+            className='button button-form'
           >
             Sign Up
           </button>

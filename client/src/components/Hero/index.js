@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import './style.css';
 
 class Hero extends Component {
@@ -15,7 +14,7 @@ class Hero extends Component {
           Pourscore helps you do just that, so you can focus on more important things&mdash;like trying new beer.
         </p>
         <Link to='/signup'>
-          <Button size='lg' className='button'>Get Started</Button>
+          <button className='button button-lg'>Get Started</button>
         </Link>
       </div>
     )
