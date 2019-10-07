@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import './style.css';
 
 class ListsContainer extends Component {
@@ -20,15 +19,14 @@ class ListsContainer extends Component {
     return (
       <div style={{position: 'relative'}}>
         <div className='listsContainer'>
-          <h2>Your lists ({this.props.listsArray.length + 1})</h2>
+          <h2>Your lists ()</h2>
           <hr />
-          <Button
+          <button
             onClick={this.props.handleNewListModal}
             className='newListButton'
-            block
           >
             + Add New List
-          </Button>
+          </button>
           <ul>
             <li list_id={''} onClick={this.resetListId} className='listElement'>All Beers</li>
             {/* {this.props.listsArray.map(

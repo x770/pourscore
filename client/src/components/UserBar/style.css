@@ -1,0 +1,15 @@
+.userbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0 15px;
+  background-color: #F7CB14;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.logout:hover {
+  cursor: pointer;
+  background-color: #F7CB14;
+  text-decoration: underline;
+}

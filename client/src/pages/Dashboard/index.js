@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../../context/appContext.js';
-import { BeerContainer, ListsContainer } from '../../components';
+import { DashboardComp, Sidebar, UserBar } from '../../components';
 import axios from 'axios';
 import './style.css';
 
@@ -19,16 +19,17 @@ class Dashboard extends Component {
 			allLists: []
 		};
 	}
-	
 
 	componentDidMount = () => {
+		document.body.style.height = '100%';
+		document.body.style.overflow = 'hidden';
 		// this.fetchAllBeers();
 		// this.fetchAllLists();
 	};
 
-	handleLogout = () => {
-		this.props.logout();
-		this.props.history.push('/logout');
+	componentWillUnmount = () => {
+		document.body.style.height = null;
+		document.body.style.overflow = null;
 	}
 
 	handleAddModal = () => {
@@ -97,36 +98,10 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<React.Fragment>
-				<div className="welcomeMessage">
-					<h1>Welcome to your dashboard, {this.props.state.user.username}!</h1>
-					<br />
-					<button onClick={this.handleLogout}>Log Out</button>
-				</div>
-				<div className="gridContainer">
-					<ListsContainer
-						listsArray={this.state.allLists}
-						list_id={this.state.listId}
-						listName={this.state.listName}
-						handleNewListModal={this.handleNewListModal.bind(this)}
-						updateListId={this.updateListId.bind(this)}
-						fetchAllBeers={this.fetchAllBeers.bind(this)}
-						fetchListBeers={this.fetchListBeers.bind(this)}
-					/>
-					<BeerContainer
-						beers={0}
-						allBeers={this.state.allBeers}
-						beersArray={this.state.beersArray}
-						fetchBeers={this.fetchAllBeers.bind(this)}
-						fetchListBeers={this.fetchListBeers.bind(this)}
-						updateListId={this.updateListId.bind(this)}
-						listId={this.state.listId}
-						listName={this.state.listName}
-						reload={this.componentDidMount.bind(this)}
-						allLists={this.state.allLists}
-					/>
-				</div>
-			</React.Fragment>
+			<div>
+				<UserBar />
+				<DashboardComp />
+			</div>
 		);
 	}
 }

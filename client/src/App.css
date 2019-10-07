@@ -72,11 +72,11 @@ h1 {
 	border: none;
 }
 
-.button:hover, .button:active {
+.button:hover, .button:active, .button:focus {
 	cursor: pointer;
   background-color: #F7CB14;
   color: black;
-  filter: brightness(90%);
+  filter: brightness(105%);
 }
 
 .button-form {

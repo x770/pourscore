@@ -18,9 +18,9 @@ import SignUp from './pages/SignUp/';
 
 // FontAwesome Import
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBars)
+library.add(faBars, faCog)
 
 class App extends Component {
   constructor(props) {
