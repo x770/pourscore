@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { withContext } from '../../context/appContext';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Settings } from '../index';
 import './style.css';
 
 class UserBar extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-  handleLogout = () => {
-		this.props.logout();
-		this.props.history.push('/logout');
+  handleLogout = async () => {
+    await this.props.logout()
+    await this.props.history.push('/logout')
   }
   
   render() {
@@ -23,4 +27,4 @@ class UserBar extends Component {
   }
 }
 
-export default withContext(UserBar);
+export default withRouter(withContext(UserBar));

@@ -113,16 +113,16 @@ export const withContext = Component => {
   return props => {
       return (
           <Context.Consumer>
-              {
-                  globalState => {
-                      return (
-                          <Component
-                              {...globalState}
-                              {...props}
-                          />
-                      )
-                  }
+            {
+              globalState => {
+                return (
+                  <Component
+                      {...globalState}
+                      {...props}
+                  />
+                )
               }
+            }
           </Context.Consumer>
       )
   }
