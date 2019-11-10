@@ -1,7 +1,6 @@
-
-
 .listsContainer > h2 {
   font-size: 2.25vmin;
+  margin: 10px 20px;
 }
 
 .listElement {
@@ -15,31 +14,6 @@
   text-decoration: underline;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-.newListButton {
-  border: none;
-  width: 85%;
-  color: black;
-  font-size: 1.2vw;
-  background-color: #F7CB14;
-  border-radius: 10px;
-  text-align: center;
-  padding: 5px;
-  margin-bottom: 2vw;
-}
-
-.newListButton:hover, .newListButton:active, .newListButton:focus {
-  background-color: #F7CB14;
-  color: black;
-  cursor: pointer;
-  filter: brightness(105%);
-}
-
-@media only screen and (max-width: 768px) {
-  .listsContainer {
-    display: none;
-  }
+.listTitle {
+  padding: 5px 20px;
 }

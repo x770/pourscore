@@ -1,57 +1,70 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withContext } from '../../context/appContext.js';
-import { DashboardComp, Sidebar, UserBar } from '../../components';
+import { AddModal, BeerContainer, MainDash, SidebarComponent, UserBar } from '../../components';
+import AddBeerModal from '../../components/AddBeerModal';
 import axios from 'axios';
 import './style.css';
 
+const mobile = window.matchMedia(`(max-width: 768px)`);
+
 class Dashboard extends Component {
 	constructor(props) {
-		super(props);
-		this.state = {
-			showAddModal: false,
-			showNewListModal: false,
-			allBeers: [],
-			listId: '',
-			listName: 'All Beers',
-			totalBeers: '',
-			beersArray: [],
-			allLists: []
-		};
-	}
+    super(props);
+    this.state = {
+      sidebarDocked: !mobile.matches,
+      isMobile: mobile.matches,
+      fullWidthDash: false,
+			showAddBeerModal: false,
+			currentList: 'All Beers'
+    };
 
+    this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
+		this.setSidebarOpen = this.setSidebarOpen.bind(this);
+  }
+
+  componentWillMount = () => {
+    mobile.addListener(this.mediaQueryChanged);
+	}
+	
 	componentDidMount = () => {
 		document.body.style.height = '100%';
 		document.body.style.overflow = 'hidden';
-		// this.fetchAllBeers();
-		// this.fetchAllLists();
+		this.props.getBeers();
 	};
 
-	componentWillUnmount = () => {
+  componentWillUnmount = () => {
+		mobile.removeListener(this.mediaQueryChanged);
 		document.body.style.height = null;
 		document.body.style.overflow = null;
+  }
+
+  setSidebarOpen = (open) => {
+    this.setState({
+      sidebarOpen: open
+    })
+  }
+
+  mediaQueryChanged = () => {
+    this.setState({
+      sidebarDocked: !mobile.matches,
+      isMobile: mobile.matches,
+      sidebarOpen: false
+    })
+  }
+  
+  toggleSidebar = () => {
+    this.setState({
+      sidebarDocked: !this.state.sidebarDocked,
+      fullWidthDash: !this.state.fullWidthDash
+    })
+  }
+	
+	handleModal = () => {
+		this.setState({
+			showAddBeerModal: !this.state.showAddBeerModal
+		})
 	}
-
-	handleAddModal = () => {
-		this.setState({ showAddModal: !this.state.showAddModal });
-	};
-
-	handleNewListModal = () => {
-		this.setState({ showNewListModal: !this.state.showNewListModal });
-	};
-
-	fetchAllBeers = () => {
-		axios
-			.get('/api/beers/user/' + this.props.user_id)
-			.then(response => {
-				this.setState({
-					totalBeers: response.data.length,
-					allBeers: response.data,
-					beersArray: response.data
-				});
-			})
-			.catch(err => console.log(err));
-	};
 
 	fetchAllLists = () => {
 		axios
@@ -98,10 +111,21 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<UserBar />
-				<DashboardComp />
-			</div>
+			<div className='dashboard'>
+        <SidebarComponent
+          docked={this.state.sidebarDocked}
+          isMobile={this.state.isMobile}
+          toggleSidebar={this.toggleSidebar}
+        />
+        <div className={this.state.sidebarDocked && this.state.isMobile ? 'overlayShow' : 'overlayHide'}></div>
+        <MainDash
+          sidebarDocked={this.state.sidebarDocked}
+          isMobile={this.state.isMobile}
+          fullWidthDash={this.state.fullWidthDash}
+					toggleSidebar={this.toggleSidebar}
+					currentList={this.state.currentList}
+        />
+      </div>
 		);
 	}
 }

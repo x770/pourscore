@@ -1,0 +1,10 @@
+.addNewList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  border-top: 1px solid #f1f1f1;
+  text-align: center;
+}

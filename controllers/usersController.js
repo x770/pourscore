@@ -11,7 +11,7 @@ module.exports = {
   },
   addBeer: function (username, { beerEntry } ) {
     db.User.findOneAndUpdate({username: username}, {
-      $push: {beers: beerEntry}b
+      $push: {beers: beerEntry}
     })
   }
 }

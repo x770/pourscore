@@ -63,7 +63,7 @@ class BeerEntry extends Component {
       <div>
         <div className='entryContainer'>
           <div className='titleContainer'>
-            <h3>{this.props.breweryName} {this.props.beerName}</h3>
+            <p>{this.props.breweryName} {this.props.beerName}</p>
           </div>
           <div className='dateContainer'>
             <div>Added on {this.parseDate(this.props.dateAdded)}</div>

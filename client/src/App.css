@@ -46,11 +46,19 @@ table {
 
 /* Custom CSS */
 
+/* Basic Classes */
+.bold {
+  font-weight: bold;
+}
+
+.hidden {
+	display: none;
+}
+
 /* Text Styles */
 
 h1 {
-	font-size: calc(2em + 1vw);
-  margin-bottom: 18px;
+	font-size: 32px;
   line-height: 1;
   font-weight: bold;
 }

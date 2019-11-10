@@ -28,8 +28,8 @@ class LoginForm extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    this.props.login(this.state)
-      .then(() => this.props.history.push('/dashboard'))
+    await this.props.login(this.state)
+    await this.props.history.push('/dashboard')
   }
 
   render() {

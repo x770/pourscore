@@ -18,78 +18,72 @@ class Provider extends Component {
     super()
     this.state = {
       beers: [],
+      lists: [],
       user: JSON.parse(localStorage.getItem('user')) || {},
       token: localStorage.getItem('token') || ''
     }
   }
 
-  componentDidMount = () => {
-    if (this.state.token) {
-      this.getBeers();
-    }
+  // Auth functions //
+  signup = async (userInfo) => {
+    const response = await beerAxios.post('/auth/signup', userInfo);
+    const { user, token } = response.data;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    this.setState({
+      user,
+      token
+    });
+
+    return response;
   }
 
-  getBeers = () => {
-    return beerAxios.get('/api/beer')
-      .then(response => {
-        this.setState({ beers: response.data });
-        return response;
-      })
+  login = async (credentials) => {
+    const response = await beerAxios.post('/auth/login', credentials);
+    const { token, user } = response.data;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    this.setState({
+      user,
+      token
+    });
+
+    return response;
   }
 
-  addBeer = (newBeer) => {
-    return beerAxios.post('/api/beer', newBeer)
-      .then(response => {
-        this.setState(prevState => {
-          return { beers: [...prevState.beers, response.data] }
-        });
-        return response;
-      })
-  }
-
-  signup = (userInfo) => {
-    return beerAxios.post('/auth/signup', userInfo)
-      .then(response => {
-        const { user, token } = response.data;
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-
-        this.setState({
-          user,
-          token
-        });
-
-        return response
-      })
-  }
-
-  login = (credentials) => {
-    return beerAxios.post('/auth/login', credentials)
-      .then(response => {
-        const { token, user } = response.data;
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-
-        this.setState({
-          user,
-          token
-        });
-
-        return response
-      })
-  }
-
-  logout = () => {
+  logout = async () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
 
     this.setState({
       beers: [],
+      lists: [],
       user: {},
       token: ''
     })
+  }
+
+  // Beer functions //
+  getBeers = async () => {
+    const response = await beerAxios.get('/api/beer');
+
+    this.setState({ beers: response.data });
+
+    return response;
+  }
+
+  addBeer = async (newBeer) => {
+    const response = await beerAxios.post('/api/beer', newBeer);
+
+    this.setState(prevState => {
+      return { beers: [...prevState.beers, response.data] };
+    });
+    
+    return response;
   }
 
   render() {
@@ -99,7 +93,8 @@ class Provider extends Component {
           state: this.state,
           signup: this.signup,
           login: this.login,
-          logout: this.logout
+          logout: this.logout,
+          getBeers: this.getBeers
         }}
       >
         {this.props.children}

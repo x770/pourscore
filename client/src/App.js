@@ -18,16 +18,16 @@ import SignUp from './pages/SignUp/';
 
 // FontAwesome Import
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBars, faCog)
+library.add(faBars, faCog, faTimes)
 
 class App extends Component {
   constructor(props) {
     super(props);
     const authStatus = JSON.parse(localStorage.getItem('isAuth'));
-    const currentUser = 'admin';
-    const user_id = 'admin';
+    const currentUser = '';
+    const user_id = '';
 
     this.state = {
       currentUser: currentUser,
@@ -41,8 +41,8 @@ class App extends Component {
 
   componentDidMount() {
     const isAuth = JSON.parse(localStorage.getItem('isAuth'));
-    const currentUser = 'admin';
-    const user_id = 'admin';
+    const currentUser = '';
+    const user_id = '';
 
     this.setState({
       isAuth: isAuth,

@@ -10,7 +10,6 @@
 .titleContainer{
   grid-column: 1 / 3;
   grid-row: 1;
-  font-size: calc(1em + 0.75vw);
   line-height: 1.25;
   font-weight: bold;
 }

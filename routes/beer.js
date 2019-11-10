@@ -2,7 +2,7 @@ const beerRouter = require('express').Router();
 const Beer = require('../models/beer');
 
 beerRouter.get("/", (req, res, next) => {
-  Beer.find({ user: req.user._id }, (err, beers) => {
+  Beer.find({ user: req.user._id, token: req.token }, (err, beers) => {
     if (err) {
       res.status(500);
       return next(err);

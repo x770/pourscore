@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withContext } from '../../context/appContext.js';
 import './style.css';
 
 class ListsContainer extends Component {
@@ -19,28 +20,23 @@ class ListsContainer extends Component {
     return (
       <div style={{position: 'relative'}}>
         <div className='listsContainer'>
-          <h2>Your lists ()</h2>
-          <hr />
-          <button
-            onClick={this.props.handleNewListModal}
-            className='newListButton'
-          >
-            + Add New List
-          </button>
+          <h2>Your lists ({1 + this.props.state.lists.length})</h2>
           <ul>
-            <li list_id={''} onClick={this.resetListId} className='listElement'>All Beers</li>
-            {/* {this.props.listsArray.map(
+            <li list_id={''} onClick={this.resetListId} className='sidebarItem'>
+              <p className='listTitle'>All Beers</p>
+            </li>
+            {this.props.state.lists.map(
               list => (
                 <li
                   key={list._id}
                   list_id={list._id}
                   onClick={this.updateList}
-                  className='listElement'
+                  className='sidebarItem'
                 >
-                  {list.name} ({list.beers.length})
+                  <p className='listTitle'>{list.name} ({list.beers.length})</p>
                 </li>
               )
-            )} */}
+            )}
           </ul>
         </div>
       </div>
@@ -48,4 +44,4 @@ class ListsContainer extends Component {
   }
 }
 
-export default ListsContainer;
+export default withContext(ListsContainer);

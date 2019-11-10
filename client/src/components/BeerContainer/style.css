@@ -4,11 +4,6 @@
   margin-bottom: 15vmin;
 }
 
-.listTitle {
-  font-size: calc(1em + 1vw);
-  letter-spacing: 0;
-}
-
 .editList:hover, .deleteList:hover {
   cursor: pointer;
   text-decoration: underline;
