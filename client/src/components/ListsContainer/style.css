@@ -3,17 +3,22 @@
   margin: 10px 20px;
 }
 
-.listElement {
-  font-size: 1em + 1vw;
-  margin-bottom: 1vh;
-}
-
-.listElement:hover {
-  font-size: 1em + 1vw;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .listTitle {
   padding: 5px 20px;
+}
+
+.sidebarItem {
+  width: 100%;
+  background-color: #fafafa;
+  transition: all 0.4s;
+}
+
+.sidebarItem.active {
+  filter: brightness(95%);
+}
+
+.sidebarItem:hover {
+  cursor: pointer;
+  filter: brightness(95%);
+  transition: all 0.4s;
 }

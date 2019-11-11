@@ -18,10 +18,10 @@ const beerSchema = new Schema({
     type: String,
     required: true
   },
-  beerRating: {
+  rating: {
     type: Number,
   },
-  beerNotes: {
+  notes: {
     type: String
   },
   date: {

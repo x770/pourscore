@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewList from './NewList';
+import { ListsContainer } from '../index';
 import LogoComponent from './LogoComponent';
-import SidebarContent from './SidebarContent';
 import './style.css';
 
 class SidebarComponent extends Component {
   styleSidebar = () => {
-    if (this.props.docked && this.props.isMobile) {
+    if (this.props.sidebarDocked && this.props.isMobile) {
       return('newSidebar mobile-expanded')
-    } else if (this.props.docked) {
+    } else if (this.props.sidebarDocked) {
       return ('newSidebar expanded')
     } else {
       return('newSidebar collapsed')
@@ -21,11 +21,11 @@ class SidebarComponent extends Component {
       <div className={this.styleSidebar()}>
         <FontAwesomeIcon
           icon='times'
-          className={this.props.docked && !this.props.isMobile ? 'hidden' : 'closeIcon'}
+          className={this.props.sidebarDocked && !this.props.isMobile ? 'hidden' : 'closeIcon'}
           onClick={this.props.toggleSidebar}
         />
         <LogoComponent />
-        <SidebarContent />
+        <ListsContainer currentList={this.props.currentList} />
         <NewList />
       </div>
     )

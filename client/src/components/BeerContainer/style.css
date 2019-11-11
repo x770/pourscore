@@ -1,4 +1,8 @@
 .beerContainer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 20px;
   max-width: 100%;
   width: 100%;
   margin-bottom: 15vmin;

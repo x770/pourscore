@@ -1,6 +1,8 @@
 .mainDash {
   width: 100%;
   margin-left: 250px;
+  background-color: #fafafa;
+  overflow: scroll;
 }
 
 .fullWidth {
@@ -11,8 +13,32 @@
   padding: 1em 3em;
 }
 
-.dashHeader {
+.listInfo {
+  margin-bottom: 35px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.listInfoRow {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
+}
+
+.listInfoRow > h2 {
+  margin-right: 15px;
+}
+
+.listInfoRow > p {
+  font-size: 14px;
+}
+
+.listInfoRow > p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.listInfoRow > span {
+  margin: 0 15px;
 }

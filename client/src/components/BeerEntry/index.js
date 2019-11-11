@@ -88,7 +88,6 @@ class BeerEntry extends Component {
               )}
           </div>
         </div>
-        <hr />
         <EditBeerModal
           show={this.state.showEditModal}
           hideModal={this.handleEditModal}

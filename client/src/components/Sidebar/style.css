@@ -1,16 +1,12 @@
 .newSidebar {
   position: fixed;
-  background-color: #fafafa;
+  background-color: #ffffff;
   min-width: 250px;
   width: 250px;
   height: calc(100vh - 10px);
   max-height: 100vh;
   border-right: 1px solid #f1f1f1;
   z-index: 2;
-}
-
-.sidebarInner {
-  padding: 20px;
 }
 
 .expanded {
@@ -36,16 +32,4 @@
 
 .closeIcon:hover {
   cursor: pointer;
-}
-
-.sidebarItem {
-  width: 100%;
-  background-color: #fafafa;
-  transition: all 0.4s;
-}
-
-.sidebarItem:hover {
-  cursor: pointer;
-  filter: brightness(96%);
-  transition: all 0.4s;
 }

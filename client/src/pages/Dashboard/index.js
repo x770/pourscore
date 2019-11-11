@@ -113,17 +113,13 @@ class Dashboard extends Component {
 		return (
 			<div className='dashboard'>
         <SidebarComponent
-          docked={this.state.sidebarDocked}
-          isMobile={this.state.isMobile}
+          {...this.state}
           toggleSidebar={this.toggleSidebar}
         />
         <div className={this.state.sidebarDocked && this.state.isMobile ? 'overlayShow' : 'overlayHide'}></div>
         <MainDash
-          sidebarDocked={this.state.sidebarDocked}
-          isMobile={this.state.isMobile}
-          fullWidthDash={this.state.fullWidthDash}
+          {...this.state}
 					toggleSidebar={this.toggleSidebar}
-					currentList={this.state.currentList}
         />
       </div>
 		);

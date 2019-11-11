@@ -22,7 +22,7 @@ class ListsContainer extends Component {
         <div className='listsContainer'>
           <h2>Your lists ({1 + this.props.state.lists.length})</h2>
           <ul>
-            <li list_id={''} onClick={this.resetListId} className='sidebarItem'>
+            <li list_id={'All Beers'} onClick={this.resetListId} className='sidebarItem active'>
               <p className='listTitle'>All Beers</p>
             </li>
             {this.props.state.lists.map(
