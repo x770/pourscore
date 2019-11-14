@@ -9,6 +9,25 @@ class UserBar extends Component {
     showDropdown: false
   }
 
+  componentWillMount = () => {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = (event) => {
+    if (this.node.contains(event.target)) {
+      this.handleDropdown();
+      return;
+    } else {
+      this.setState({
+        showDropdown: false
+      })
+    }
+  }
+
   handleLogout = async () => {
     await this.props.logout()
     await this.props.history.push('/logout');
@@ -33,8 +52,8 @@ class UserBar extends Component {
 
         <div className='userInfo'>
           <p>{this.props.state.user.username}</p>
-          <div className='dropdownContainer'>
-            <FontAwesomeIcon icon='cog' className='cogIcon' onClick={this.handleDropdown} />
+          <div className='dropdownContainer' ref={dropdownContainer => this.node = dropdownContainer}>
+            <FontAwesomeIcon icon='cog' className='cogIcon' />
             <div className={this.state.showDropdown ? 'dropdown' : 'dropdown dropdown-hidden'}>
               <div className='logout' onClick={this.handleLogout}>Logout</div>
             </div>
